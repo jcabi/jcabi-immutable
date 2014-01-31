@@ -31,7 +31,6 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -69,12 +68,11 @@ public final class Array<T> implements List<T> {
     }
 
     /**
-     * Private ctor, from an array of values.
+     * Public ctor, from an array of values.
      * @param list Items to encapsulate
      */
     public Array(final T... list) {
-        this.values = (T[]) new Object[list.length];
-        System.arraycopy(list, 0, this.values, 0, list.length);
+        this.values = list;
     }
 
     /**
@@ -116,10 +114,10 @@ public final class Array<T> implements List<T> {
                 "argument of Array#with() can't be NULL"
             );
         }
-        final Collection<T> list = new ArrayList<T>(this.values.length + 1);
-        list.addAll(Arrays.asList(this.values));
-        list.add(value);
-        return new Array<T>(list);
+        final T[] items = (T[]) new Object[this.values.length + 1];
+        System.arraycopy(this.values, 0, items, 0, this.values.length);
+        items[this.values.length] = value;
+        return new Array<T>(items);
     }
 
     /**
@@ -127,23 +125,38 @@ public final class Array<T> implements List<T> {
      * @param vals The values
      * @return New vector
      */
-    public Array<T> with(final Collection<T> vals) {
+    public Array<T> with(final Iterable<T> vals) {
         if (vals == null) {
             throw new IllegalArgumentException(
                 "arguments of Array#with() can't be NULL"
             );
         }
-        final Collection<T> list = new ArrayList<T>(
-            this.values.length + vals.size()
-        );
-        list.addAll(Arrays.asList(this.values));
-        list.addAll(vals);
-        return new Array<T>(list);
+        final Array<T> array;
+        if (vals instanceof Collection) {
+            final T[] items = (T[]) new Object[
+                this.values.length + Collection.class.cast(vals).size()
+            ];
+            System.arraycopy(this.values, 0, items, 0, this.values.length);
+            int idx = this.values.length;
+            for (final T value : vals) {
+                items[idx] = value;
+                ++idx;
+            }
+            array = new Array<T>(items);
+        } else {
+            final Collection<T> list = new LinkedList<T>();
+            list.addAll(Arrays.asList(this.values));
+            for (final T value : vals) {
+                list.add(value);
+            }
+            array = new Array<T>(list);
+        }
+        return array;
     }
 
     /**
      * Make a new one with an extra entry at the given position.
-     * @param pos Position to replace (if possible)
+     * @param pos Position to replace
      * @param value The value
      * @return New array
      */
@@ -163,8 +176,12 @@ public final class Array<T> implements List<T> {
 
     /**
      * Make a new array, without this element.
+     *
+     * <p>The method throws {@link ArrayIndexOutOfBoundsException} if such
+     * position is absent in the array.
+     *
      * @param idx The position to remove
-     * @return New vector
+     * @return New array
      */
     public Array<T> without(final int idx) {
         if (idx >= this.values.length) {
@@ -175,14 +192,12 @@ public final class Array<T> implements List<T> {
                 )
             );
         }
-        final Collection<T> list = new ArrayList<T>(this.values.length - 1);
-        for (int pos = 0; pos < this.values.length; ++pos) {
-            if (pos == idx) {
-                continue;
-            }
-            list.add(this.values[pos]);
-        }
-        return new Array<T>(list);
+        final T[] items = (T[]) new Object[this.values.length - 1];
+        System.arraycopy(this.values, 0, items, 0, idx);
+        System.arraycopy(
+            this.values, idx + 1, items, idx, this.values.length - idx - 1
+        );
+        return new Array<T>(items);
     }
 
     @Override
