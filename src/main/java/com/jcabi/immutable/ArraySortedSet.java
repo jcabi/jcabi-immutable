@@ -122,7 +122,14 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         }
         this.cmp = comparator;
         if (set instanceof ArraySortedSet) {
-            this.values = ((ArraySortedSet<T>) set).values;
+            final ArraySortedSet<T> origin = (ArraySortedSet<T>) set;
+            if (origin.cmp.equals(this.cmp)) {
+                this.values = origin.values;
+            } else {
+                final Set<T> hset = new TreeSet<T>(this.cmp);
+                hset.addAll(Collection.class.cast(set));
+                this.values = hset.toArray((T[]) new Object[hset.size()]);
+            }
         } else if (set instanceof Collection) {
             final Set<T> hset = new TreeSet<T>(this.cmp);
             hset.addAll(Collection.class.cast(set));
