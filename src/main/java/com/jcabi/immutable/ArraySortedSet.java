@@ -34,6 +34,7 @@ import com.jcabi.aspects.Loggable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -65,13 +66,13 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     /**
      * Comparator to use.
      */
-    private final transient ArraySortedSet.Comparator<T> cmp;
+    private final transient ArrayComparator<T> cmp;
 
     /**
      * Public ctor.
      * @param comparator Comparator to use
      */
-    public ArraySortedSet(final ArraySortedSet.Comparator<T> comparator) {
+    public ArraySortedSet(final ArrayComparator<T> comparator) {
         this(comparator, (T[]) new Object[0]);
     }
 
@@ -88,7 +89,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @param comparator The comparator to use
      * @param set Original set
      */
-    public ArraySortedSet(final ArraySortedSet.Comparator<T> comparator,
+    public ArraySortedSet(final ArrayComparator<T> comparator,
         final T... set) {
         this(Arrays.asList(set), comparator);
     }
@@ -99,7 +100,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @since 0.12
      */
     public ArraySortedSet(final Iterable<T> set) {
-        this(set, new ArraySortedSet.Comparator.Default<T>());
+        this(set, new ArrayComparator.Default<T>());
     }
 
     /**
@@ -108,7 +109,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @param comparator Comparator to use
      */
     public ArraySortedSet(final Iterable<T> set,
-        final ArraySortedSet.Comparator<T> comparator) {
+        final ArrayComparator<T> comparator) {
         if (set == null) {
             throw new IllegalArgumentException(
                 "first argument of ArraySortedSet ctor can't be NULL"
@@ -235,7 +236,9 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public SortedSet<T> subSet(final T from, final T till) {
-        throw new UnsupportedOperationException();
+        return Collections.unmodifiableSortedSet(
+            new TreeSet<T>(this).subSet(from, till)
+        );
     }
 
     @Override
@@ -255,7 +258,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     @Override
     public T first() {
         if (this.values.length == 0) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("sorted set is empty, no first()");
         }
         return this.values[0];
     }
@@ -263,7 +266,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     @Override
     public T last() {
         if (this.values.length == 0) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("sorted set is empty, not last()");
         }
         return this.values[this.values.length - 1];
     }
@@ -338,46 +341,5 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
             "clear(): ArraySortedSet is immutable"
         );
     }
-
-    /**
-     * Comparator.
-     * @param <T> Type of argument
-     */
-    @Immutable
-    public interface Comparator<T> extends java.util.Comparator<T> {
-        /**
-         * Default comparator.
-         * @param <T> Type of argument
-         */
-        @Immutable
-        final class Default<T> implements ArraySortedSet.Comparator<T> {
-            @Override
-            public int compare(final T left, final T right) {
-                return Comparable.class.cast(left).compareTo(right);
-            }
-        };
-        /**
-         * Neutral comparator (never compares).
-         * @param <T> Type of argument
-         */
-        @Immutable
-        final class Neutral<T> implements ArraySortedSet.Comparator<T> {
-            @Override
-            public int compare(final T left, final T right) {
-                return 1;
-            }
-        };
-        /**
-         * Reverse comparator.
-         * @param <T> Type of argument
-         */
-        @Immutable
-        final class Reverse<T> implements ArraySortedSet.Comparator<T> {
-            @Override
-            public int compare(final T left, final T right) {
-                return Comparable.class.cast(right).compareTo(left);
-            }
-        };
-    };
 
 }

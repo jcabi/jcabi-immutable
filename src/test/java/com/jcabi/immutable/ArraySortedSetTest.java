@@ -48,8 +48,8 @@ public final class ArraySortedSetTest {
     /**
      * Simple comparator.
      */
-    private static final ArraySortedSet.Comparator<Integer> CMP =
-        new ArraySortedSet.Comparator.Default<Integer>();
+    private static final ArrayComparator<Integer> CMP =
+        new ArrayComparator.Default<Integer>();
 
     /**
      * ArraySortedSet can work as a sorted set.
@@ -118,6 +118,54 @@ public final class ArraySortedSetTest {
         MatcherAssert.assertThat(
             new ArraySortedSet<Integer>(list),
             Matchers.hasItem(Tv.TEN)
+        );
+    }
+
+    /**
+     * ArraySortedSet can work with a custom comparator.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void worksWithCustomComparator() throws Exception {
+        final String first = "some text that is long";
+        final String second = "short text";
+        MatcherAssert.assertThat(
+            new ArraySortedSet<String>(
+                Arrays.asList(second, first),
+                new ArrayComparator<String>() {
+                    @Override
+                    public int compare(final String left, final String right) {
+                        return right.length() - left.length();
+                    }
+                }
+            ),
+            Matchers.contains(first, second)
+        );
+    }
+
+    /**
+     * ArraySortedSet can replace a comparator of an another ArraySortedSet.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void replacesComparator() throws Exception {
+        final String first = "B very long long text";
+        final String second = "A short text";
+        final SortedSet<String> origin = new ArraySortedSet<String>(
+            Arrays.asList(second, first),
+            new ArrayComparator<String>() {
+                @Override
+                public int compare(final String left, final String right) {
+                    return right.length() - left.length();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            new ArraySortedSet<String>(
+                origin,
+                new ArrayComparator.Default<String>()
+            ),
+            Matchers.contains(second, first)
         );
     }
 
