@@ -31,8 +31,6 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Tv;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.SortedSet;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -56,12 +54,9 @@ public final class ArraySortedSetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksAsANormalSortedSet() throws Exception {
-        final Collection<Integer> list = new LinkedList<Integer>();
-        list.add(Tv.TEN);
-        list.add(Tv.FIVE);
+    public void worksAsNormalSortedSet() throws Exception {
         final SortedSet<Integer> set = new ArraySortedSet<Integer>(
-            list, ArraySortedSetTest.CMP
+            Arrays.asList(Tv.TEN, Tv.FIVE)
         );
         MatcherAssert.assertThat(set, Matchers.hasItem(Tv.TEN));
         MatcherAssert.assertThat(set, Matchers.hasSize(2));
@@ -114,10 +109,10 @@ public final class ArraySortedSetTest {
      */
     @Test
     public void encapsulatesIterables() throws Exception {
-        final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE);
+        final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE, Tv.SEVEN);
         MatcherAssert.assertThat(
             new ArraySortedSet<Integer>(list),
-            Matchers.hasItem(Tv.TEN)
+            Matchers.contains(Tv.FIVE, Tv.SEVEN, Tv.TEN)
         );
     }
 
