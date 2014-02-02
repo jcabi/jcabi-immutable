@@ -111,4 +111,72 @@ public final class ArrayTest {
         );
     }
 
+    /**
+     * Array can find index of an object.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void findsIndexOfObject() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>(Tv.FIVE, 2, 2, Tv.THREE).indexOf(2),
+            Matchers.equalTo(1)
+        );
+        MatcherAssert.assertThat(
+            new Array<Integer>(Tv.FIVE, 2, 2, Tv.THREE).indexOf(0),
+            Matchers.equalTo(-1)
+        );
+    }
+
+    /**
+     * Array can find last index of an object.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void findsLastIndexOfObject() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>(1, 1, Tv.TEN, Tv.TEN, Tv.THREE).indexOf(Tv.TEN),
+            Matchers.equalTo(2)
+        );
+        MatcherAssert.assertThat(
+            new Array<Integer>(1, 1, Tv.TEN, Tv.TEN, Tv.THREE).indexOf(0),
+            Matchers.equalTo(-1)
+        );
+    }
+
+    /**
+     * Array can build a list iterator.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void makesListIterator() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>(Tv.FIVE, 2, 2, Tv.THREE).listIterator().next(),
+            Matchers.equalTo(Tv.FIVE)
+        );
+    }
+
+    /**
+     * Array can build a list iterator with an index.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void makesListIteratorWithIndex() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>(Tv.FIVE, 1, 2, Tv.THREE).listIterator(2).next(),
+            Matchers.equalTo(2)
+        );
+    }
+
+    /**
+     * Array can build a sub-list.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void makesSubList() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>(Tv.FIVE, 1, 2).subList(1, Tv.THREE),
+            Matchers.contains(1, 2)
+        );
+    }
+
 }

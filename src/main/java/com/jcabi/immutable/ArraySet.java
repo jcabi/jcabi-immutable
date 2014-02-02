@@ -33,6 +33,7 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -192,7 +193,9 @@ public final class ArraySet<T> implements Set<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return Arrays.asList(this.values).iterator();
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values)
+        ).iterator();
     }
 
     @Override

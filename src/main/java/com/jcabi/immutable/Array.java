@@ -33,6 +33,7 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -240,7 +241,9 @@ public final class Array<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return Arrays.asList(this.values).iterator();
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values)
+        ).iterator();
     }
 
     @Override
@@ -363,17 +366,23 @@ public final class Array<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        return Arrays.asList(this.values).listIterator();
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values)
+        ).listIterator();
     }
 
     @Override
     public ListIterator<T> listIterator(final int index) {
-        return Arrays.asList(this.values).listIterator(index);
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values)
+        ).listIterator(index);
     }
 
     @Override
     public List<T> subList(final int from, final int till) {
-        return Arrays.asList(this.values).subList(from, till);
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values).subList(from, till)
+        );
     }
 
 }

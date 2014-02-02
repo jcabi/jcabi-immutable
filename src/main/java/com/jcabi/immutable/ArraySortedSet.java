@@ -280,7 +280,9 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return Arrays.asList(this.values).iterator();
+        return Collections.unmodifiableList(
+            Arrays.asList(this.values)
+        ).iterator();
     }
 
     @Override
