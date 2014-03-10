@@ -11,7 +11,7 @@ You need just this dependency:
 <dependency>
   <groupId>com.jcabi</groupId>
   <artifactId>jcabi-immutable</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
 
