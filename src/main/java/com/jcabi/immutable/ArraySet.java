@@ -167,7 +167,7 @@ public final class ArraySet<T> implements Set<T> {
     @Override
     public String toString() {
         final StringBuilder text = new StringBuilder();
-        for (T item : this.values) {
+        for (final T item : this.values) {
             if (text.length() > 0) {
                 text.append(", ");
             }

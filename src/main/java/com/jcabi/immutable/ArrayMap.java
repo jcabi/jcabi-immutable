@@ -31,6 +31,7 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.io.Serializable;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -333,7 +334,11 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
      * Comparator.
      */
     private static final class Cmp<K, V> implements
-        Comparator<ArrayMap.ImmutableEntry<K, V>> {
+        Comparator<ArrayMap.ImmutableEntry<K, V>>, Serializable {
+        /**
+         * The Serial version UID.
+         */
+        private static final long serialVersionUID = 4064118000237204080L;
         @Override
         public int compare(final ImmutableEntry<K, V> left,
             final ImmutableEntry<K, V> right) {
