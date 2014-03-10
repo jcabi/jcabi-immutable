@@ -63,7 +63,6 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-aspects</artifactId>
-            <version>0.14</version>
         </dependency>
     </dependencies>
 </project>

@@ -56,18 +56,18 @@ Immutable Collections
   All of them are annotated with
   {{{./apidocs-${project.version}/com/jcabi/aspects/Immutable.html}<<<@Immutable>>>}}.
 
-The only dependency you need is
-(you can also download
-[`jcabi-immutable-${project.version}.jar`](http://repo1.maven.org/maven2/com/jcabi/jcabi-immutable/${project.version}/jcabi-immutable-${project.version}.jar)
-and add it to the classpath):
+  The only dependency you need is
+  (you can also download
+  {{{http://repo1.maven.org/maven2/com/jcabi/jcabi-immutable/${project.version}/jcabi-immutable-${project.version}.jar}<<<jcabi-immutable-${project.version}.jar>>>}}
+  and add it to the classpath):
 
-```
++--
 <dependency>
   <groupId>com.jcabi</groupId>
   <artifactId>jcabi-immutable</artifactId>
   <version>${project.version}</version>
 </dependency>
-```
++--
 
 * Cutting Edge Version
 
