@@ -1,21 +1,12 @@
 <img src="http://img.jcabi.com/logo-square.png" width="64px" height="64px" />
  
 [![Build Status](https://travis-ci.org/jcabi/jcabi-immutable.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-immutable)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable)
 
 More details are here: [immutable.jcabi.com](http://immutable.jcabi.com/index.html)
 
 This module contains truly immutable collections of objects, including
 `Array`, `ArraySet`, and `ArrayMap`.
-
-You need just this dependency:
-
-```xml
-<dependency>
-  <groupId>com.jcabi</groupId>
-  <artifactId>jcabi-immutable</artifactId>
-  <version>1.1</version>
-</dependency>
-```
 
 ## Questions?
 
