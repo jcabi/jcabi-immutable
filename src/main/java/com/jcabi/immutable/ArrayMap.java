@@ -66,6 +66,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     /**
      * All entries.
      */
+    @Immutable.Array
     private final transient ImmutableEntry<K, V>[] entries;
 
     /**

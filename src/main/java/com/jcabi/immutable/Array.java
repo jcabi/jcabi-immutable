@@ -59,6 +59,7 @@ public final class Array<T> implements List<T> {
     /**
      * All values.
      */
+    @Immutable.Array
     private final transient T[] values;
 
     /**

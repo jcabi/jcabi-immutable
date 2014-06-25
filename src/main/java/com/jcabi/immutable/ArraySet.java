@@ -59,6 +59,7 @@ public final class ArraySet<T> implements Set<T> {
     /**
      * All vals.
      */
+    @Immutable.Array
     private final transient T[] values;
 
     /**

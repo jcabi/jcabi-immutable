@@ -61,6 +61,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     /**
      * All values.
      */
+    @Immutable.Array
     private final transient T[] values;
 
     /**
