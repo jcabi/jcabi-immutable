@@ -98,6 +98,24 @@ public final class ArrayTest {
     }
 
     /**
+     * Array can remove items.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void removesElements() throws Exception {
+        MatcherAssert.assertThat(
+            new Array<Integer>()
+                .with(Tv.FIVE)
+                .with(Tv.TEN)
+                .with(Tv.THOUSAND)
+                .less(Tv.FIVE)
+                .less(Tv.THREE)
+                .less(Tv.MILLION),
+            Matchers.hasSize(2)
+        );
+    }
+
+    /**
      * Array can encapsulate iterables.
      * @throws Exception If some problem inside
      * @since 0.12

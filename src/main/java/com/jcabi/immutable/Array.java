@@ -194,12 +194,41 @@ public final class Array<T> implements List<T> {
                 )
             );
         }
+        if (idx < 0) {
+            throw new ArrayIndexOutOfBoundsException(
+                String.format("index can't be negative: %d", idx)
+            );
+        }
         final T[] items = (T[]) new Object[this.values.length - 1];
         System.arraycopy(this.values, 0, items, 0, idx);
         System.arraycopy(
             this.values, idx + 1, items, idx, this.values.length - idx - 1
         );
         return new Array<T>(items);
+    }
+
+    /**
+     * Make a new array, without this element (or the same array if such
+     * an element is absent).
+     * @param item The element to remove
+     * @return New array
+     * @since 1.4
+     */
+    public Array<T> less(final T item) {
+        int idx = -1;
+        for (int pos = 0; pos < this.values.length; ++pos) {
+            if (this.values[pos].equals(item)) {
+                idx = pos;
+                break;
+            }
+        }
+        final Array<T> array;
+        if (idx >= 0) {
+            array = this.without(idx);
+        } else {
+            array = this;
+        }
+        return array;
     }
 
     @Override
