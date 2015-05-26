@@ -2,20 +2,22 @@ date: 25-05-2015
 author: Jason Wong
 method: champions.pert
 scope:
-  1: Implementation of "Array" object
-  2: Implementation of "ArraySet" object
-  3: Implementation of "ArrayMap" object
-  4: Achieve 80% test coverage
+  1: jcabi-immutable project scaffolding
+  2: Implementation of "Array" object
+  3: Implementation of "ArraySet" object
+  4: Implementation of "ArrayMap" object
+  5: Achieve 80% test coverage
+  6: CI integration
 champions:
-  1:
-    worst-case: 3
-    best-case: 1
-    most-likely: 2
   2:
     worst-case: 3
     best-case: 1
     most-likely: 2
   3:
+    worst-case: 3
+    best-case: 1
+    most-likely: 2
+  4:
     worst-case: 3
     best-case: 1
     most-likely: 2
