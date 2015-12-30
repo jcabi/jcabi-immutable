@@ -90,9 +90,9 @@ public final class ArrayTest {
                 .with(Tv.FIVE)
                 .with(Tv.TEN)
                 .with(Tv.THOUSAND)
-                .without(0)
-                .without(0)
-                .without(0),
+                .withoutIndex(0)
+                .withoutIndex(0)
+                .withoutIndex(0),
             Matchers.empty()
         );
     }
@@ -108,9 +108,9 @@ public final class ArrayTest {
                 .with(Tv.FIVE)
                 .with(Tv.TEN)
                 .with(Tv.THOUSAND)
-                .less(Tv.FIVE)
-                .less(Tv.THREE)
-                .less(Tv.MILLION),
+                .without(Tv.FIVE)
+                .without(Tv.THREE)
+                .without(Tv.MILLION),
             Matchers.hasSize(2)
         );
     }

@@ -177,7 +177,7 @@ public final class Array<T> implements List<T> {
     }
 
     /**
-     * Make a new array, without this element.
+     * Make a new array, without element on specific index.
      *
      * <p>The method throws {@link ArrayIndexOutOfBoundsException} if such
      * position is absent in the array.
@@ -185,7 +185,7 @@ public final class Array<T> implements List<T> {
      * @param idx The position to remove
      * @return New array
      */
-    public Array<T> without(final int idx) {
+    public Array<T> withoutIndex(final int idx) {
         if (idx >= this.values.length) {
             throw new ArrayIndexOutOfBoundsException(
                 String.format(
@@ -214,7 +214,7 @@ public final class Array<T> implements List<T> {
      * @return New array
      * @since 1.4
      */
-    public Array<T> less(final T item) {
+    public Array<T> without(final T item) {
         int idx = -1;
         for (int pos = 0; pos < this.values.length; ++pos) {
             if (this.values[pos].equals(item)) {
@@ -224,7 +224,7 @@ public final class Array<T> implements List<T> {
         }
         final Array<T> array;
         if (idx >= 0) {
-            array = this.without(idx);
+            array = this.withoutIndex(idx);
         } else {
             array = this;
         }
