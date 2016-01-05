@@ -90,7 +90,8 @@ public interface ArrayComparator<T> extends Comparator<T> {
      * @param <T> Type of argument
      */
     @Immutable
-    final class Reverse<T extends Comparable<T>> implements ArrayComparator<T>, Serializable {
+    final class Reverse<T extends Comparable<T>> 
+    	implements ArrayComparator<T>, Serializable {
         /**
          * Serialization marker.
          */
