@@ -197,4 +197,12 @@ public final class ArrayTest {
         );
     }
 
+    @Test
+    public void arrayComparatorWorksWithComparable() {
+        final ArrayComparator.Reverse<Integer> comparator =
+            new ArrayComparator.Reverse<Integer>();
+        final int result = comparator.compare(1, 2);
+        MatcherAssert.assertThat(result,Matchers.greaterThan(0));
+    }
+
 }
