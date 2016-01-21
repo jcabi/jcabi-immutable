@@ -5,6 +5,7 @@
 
 [![Build Status](https://travis-ci.org/jcabi/jcabi-immutable.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-immutable)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable)
+[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.jcabi/jcabi-immutable/badge.svg)](http://www.javadoc.io/doc/com.jcabi/jcabi-immutable)
 [![Dependencies](https://www.versioneye.com/user/projects/561ac50ca193340f28001121/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561ac50ca193340f28001121)
 
 More details are here: [immutable.jcabi.com](http://immutable.jcabi.com/index.html)
