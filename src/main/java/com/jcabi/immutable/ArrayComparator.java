@@ -50,7 +50,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
      * @param <T> Type of argument
      */
     @Immutable
-    final class Default<T extends Comparable<T>> implements ArrayComparator<T>,
+    final class Default<T> implements ArrayComparator<T>,
         Serializable {
         /**
          * Serialization marker.
@@ -62,7 +62,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         }
         @Override
         public int compare(final T left, final T right) {
-            return left.compareTo(right);
+            return ((Comparable<T>) left).compareTo(right);
         }
     }
 
