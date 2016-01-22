@@ -46,7 +46,7 @@ public class ArrayComparatorTest {
      * @throws Exception If fails
      */
     @Test
-    private void reverseComparatorCanCompare() throws Exception {
+    public final void reverseComparatorCanCompare() throws Exception {
         final ArrayComparator.Reverse<Integer> comparator =
             new ArrayComparator.Reverse<Integer>();
         final int result = comparator.compare(1, 2);
