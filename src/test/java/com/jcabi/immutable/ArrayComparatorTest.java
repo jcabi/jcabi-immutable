@@ -34,12 +34,12 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test case for {@link ArrayComparator} implementations.
+ * Test case for {@link ArrayComparator}.
  * @author Igor Piddubnyi (igor.piddubnyi@gmail.com)
  * @version $Id$
- * @since 2.0
+ * @since 1.5
  */
-public class ArrayComparatorTest {
+public final class ArrayComparatorTest {
 
     /**
      * ReverseComparator can compare.
@@ -47,9 +47,9 @@ public class ArrayComparatorTest {
      */
     @Test
     public final void reverseComparatorCanCompare() throws Exception {
-        final ArrayComparator.Reverse<Integer> comparator =
-            new ArrayComparator.Reverse<Integer>();
-        final int result = comparator.compare(1, 2);
-        MatcherAssert.assertThat(result, Matchers.greaterThan(0));
+        MatcherAssert.assertThat(
+            new ArrayComparator.Reverse<Integer>().compare(1, 2),
+            Matchers.greaterThan(0)
+        );
     }
 }
