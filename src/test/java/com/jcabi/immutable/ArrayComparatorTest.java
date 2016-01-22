@@ -46,7 +46,7 @@ public final class ArrayComparatorTest {
      * @throws Exception If fails
      */
     @Test
-    public final void reverseComparatorCanCompare() throws Exception {
+    public void reverseComparatorCanCompare() throws Exception {
         MatcherAssert.assertThat(
             new ArrayComparator.Reverse<Integer>().compare(1, 2),
             Matchers.greaterThan(0)
