@@ -90,7 +90,8 @@ public interface ArrayComparator<T> extends Comparator<T> {
      * @param <T> Type of argument
      */
     @Immutable
-    final class Reverse<T> implements ArrayComparator<T>, Serializable {
+    final class Reverse<T extends Comparable<T>> implements ArrayComparator<T>,
+        Serializable {
         /**
          * Serialization marker.
          */
@@ -101,7 +102,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         }
         @Override
         public int compare(final T left, final T right) {
-            return ((Comparable<T>) right).compareTo(left);
+            return right.compareTo(left);
         }
     }
 
