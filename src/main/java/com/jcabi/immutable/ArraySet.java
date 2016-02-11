@@ -189,8 +189,8 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Checks if the given object is in this set or not.
-     * Since this set is implemented using an array,<br>
-     * this method works in linear time (<b>O(n)</b>).
+     * Since this Set implementation is backed by array,<br>
+     * complexity of the operation is (<b>O(n)</b>).
      * @param key The element searched in this set.
      * @return True if the element is found in the set, or false otherwise.
      */
