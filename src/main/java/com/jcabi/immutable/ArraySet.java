@@ -187,6 +187,13 @@ public final class ArraySet<T> implements Set<T> {
         return this.values.length == 0;
     }
 
+    /**
+     * Checks if the given object is in this set or not.
+     * Since this Set implementation is backed by array,<br>
+     * complexity of the operation is (<b>O(n)</b>).
+     * @param key The element searched in this set.
+     * @return True if the element is found in the set, or false otherwise.
+     */
     @Override
     public boolean contains(final Object key) {
         return Arrays.asList(this.values).contains(key);
