@@ -251,6 +251,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public V put(final K key, final V value) {
         throw new UnsupportedOperationException(
             "put(): ArrayMap is immutable"
@@ -258,6 +259,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public V remove(final Object key) {
         throw new UnsupportedOperationException(
             "remove(): ArrayMap is immutable"
@@ -265,6 +267,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public void putAll(final Map<? extends K, ? extends V> map) {
         throw new UnsupportedOperationException(
             "putAll(): ArrayMap is immutable"
@@ -272,6 +275,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public void clear() {
         throw new UnsupportedOperationException(
             "clear(): ArrayMap is immutable"
@@ -279,6 +283,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public V putIfAbsent(final K key, final V value) {
         throw new UnsupportedOperationException(
             "putIfAbsent(): ArrayMap is immutable"
@@ -286,6 +291,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public boolean remove(final Object key, final Object value) {
         throw new UnsupportedOperationException(
             "remove(): ArrayMap is immutable, can't change"
@@ -293,6 +299,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public boolean replace(final K key, final V old, final V value) {
         throw new UnsupportedOperationException(
             "replace(): ArrayMap is immutable"
@@ -300,6 +307,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public V replace(final K key, final V value) {
         throw new UnsupportedOperationException(
             "replace(): ArrayMap is immutable, can't replace"

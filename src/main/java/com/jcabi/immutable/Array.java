@@ -296,6 +296,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean add(final T element) {
         throw new UnsupportedOperationException(
             "add(): Array is immutable"
@@ -303,6 +304,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean remove(final Object obj) {
         throw new UnsupportedOperationException(
             "remove(): Array is immutable"
@@ -315,6 +317,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean addAll(final Collection<? extends T> col) {
         throw new UnsupportedOperationException(
             "addAll(): Array is immutable"
@@ -322,6 +325,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean retainAll(final Collection<?> col) {
         throw new UnsupportedOperationException(
             "retainAll(): Array is immutable"
@@ -329,6 +333,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean removeAll(final Collection<?> col) {
         throw new UnsupportedOperationException(
             "removeAll(): Array is immutable"
@@ -336,6 +341,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public void clear() {
         throw new UnsupportedOperationException(
             "clear(): Array is immutable"
@@ -343,6 +349,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public boolean addAll(final int index, final Collection<? extends T> col) {
         throw new UnsupportedOperationException(
             "addAll(): Array is immutable, can't change"
@@ -364,6 +371,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public T set(final int index, final T element) {
         throw new UnsupportedOperationException(
             "set(idx): Array is immutable"
@@ -371,6 +379,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public void add(final int index, final T element) {
         throw new UnsupportedOperationException(
             "add(idx): Array is immutable"
@@ -378,6 +387,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @Deprecated
     public T remove(final int index) {
         throw new UnsupportedOperationException(
             "remove(idx): Array is immutable"

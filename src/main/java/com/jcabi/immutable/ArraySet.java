@@ -226,11 +226,13 @@ public final class ArraySet<T> implements Set<T> {
     }
 
     @Override
+    @Deprecated
     public boolean add(final T element) {
         throw new UnsupportedOperationException();
     }
 
     @Override
+    @Deprecated
     public boolean remove(final Object obj) {
         throw new UnsupportedOperationException();
     }
@@ -241,21 +243,25 @@ public final class ArraySet<T> implements Set<T> {
     }
 
     @Override
+    @Deprecated
     public boolean addAll(final Collection<? extends T> col) {
         throw new UnsupportedOperationException();
     }
 
     @Override
+    @Deprecated
     public boolean retainAll(final Collection<?> col) {
         throw new UnsupportedOperationException();
     }
 
     @Override
+    @Deprecated
     public boolean removeAll(final Collection<?> col) {
         throw new UnsupportedOperationException();
     }
 
     @Override
+    @Deprecated
     public void clear() {
         throw new UnsupportedOperationException();
     }

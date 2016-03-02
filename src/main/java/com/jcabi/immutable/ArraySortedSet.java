@@ -306,6 +306,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public boolean add(final T element) {
         throw new UnsupportedOperationException(
             "add(): ArraySortedSet is immutable"
@@ -313,6 +314,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public boolean remove(final Object obj) {
         throw new UnsupportedOperationException(
             "remove(): ArraySortedSet is immutable"
@@ -325,6 +327,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public boolean addAll(final Collection<? extends T> col) {
         throw new UnsupportedOperationException(
             "addAll(): ArraySortedSet is immutable"
@@ -332,6 +335,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public boolean retainAll(final Collection<?> col) {
         throw new UnsupportedOperationException(
             "retainAll(): ArraySortedSet is immutable"
@@ -339,6 +343,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public boolean removeAll(final Collection<?> col) {
         throw new UnsupportedOperationException(
             "removeAll(): ArraySortedSet is immutable"
@@ -346,6 +351,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @Deprecated
     public void clear() {
         throw new UnsupportedOperationException(
             "clear(): ArraySortedSet is immutable"
