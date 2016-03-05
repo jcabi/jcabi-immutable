@@ -50,6 +50,7 @@ import java.util.ListIterator;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
+ * @checkstyle MissingDeprecatedCheck (430 lines)
  */
 @Immutable
 @Loggable(Loggable.DEBUG)

@@ -57,6 +57,7 @@ import java.util.concurrent.ConcurrentMap;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
+ * @checkstyle MissingDeprecatedCheck (400 lines)
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
