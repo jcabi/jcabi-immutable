@@ -35,6 +35,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -42,6 +43,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@woquo.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class ArrayTest {
 
     /**
@@ -195,6 +197,18 @@ public final class ArrayTest {
             new Array<Integer>(Tv.FIVE, 1, 2).subList(1, Tv.THREE),
             Matchers.contains(1, 2)
         );
+    }
+
+    /**
+     * Changing array we passed to ctor doesn't affect immutable array content.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void implicitImmutable() throws Exception {
+        final Integer[] ints = new Integer[] {1, 2, 3};
+        final Array<Integer> array = new Array<Integer>(ints);
+        ints[1] = 0;
+        Assert.assertEquals(2, (int) array.get(1));
     }
 
 }
