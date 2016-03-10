@@ -75,7 +75,8 @@ public final class Array<T> implements List<T> {
      * @param list Items to encapsulate
      */
     public Array(final T... list) {
-        this.values = list;
+        this.values = (T[]) new Object[list.length];
+        System.arraycopy(list, 0, this.values, 0, list.length);
     }
 
     /**
