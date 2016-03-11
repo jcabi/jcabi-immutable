@@ -200,15 +200,17 @@ public final class ArrayTest {
     }
 
     /**
-     * Changing array we passed to ctor doesn't affect immutable array content.
+     * Array must be independent from data we passed to its ctor.
      * @throws Exception If some problem inside
      */
     @Test
-    public void implicitImmutable() throws Exception {
+    public void isIndependentFromCtorParam() throws Exception {
         final Integer[] ints = new Integer[] {1, 2, 3};
         final Array<Integer> array = new Array<Integer>(ints);
         ints[1] = 0;
-        Assert.assertEquals(2, (int) array.get(1));
+        final Object[] actual = array.toArray();
+        final Integer[] expected = {1, 2, 3};
+        Assert.assertTrue(Arrays.equals(actual, expected));
     }
 
 }
