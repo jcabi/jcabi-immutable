@@ -202,15 +202,16 @@ public final class ArrayTest {
     /**
      * Array must be independent from data we passed to its ctor.
      * @throws Exception If some problem inside
+     * @checkstyle MagicNumberCheck (10 lines)
      */
     @Test
     public void isIndependentFromCtorParam() throws Exception {
         final Integer[] ints = new Integer[] {1, 2, 3};
         final Array<Integer> array = new Array<Integer>(ints);
         ints[1] = 0;
-        final Object[] actual = array.toArray();
-        final Integer[] expected = {1, 2, 3};
-        Assert.assertTrue(Arrays.equals(actual, expected));
+        Assert.assertTrue(
+                Arrays.equals(array.toArray(), new Integer[]{1, 2, 3})
+        );
     }
 
 }
