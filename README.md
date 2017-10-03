@@ -1,6 +1,6 @@
 <img src="http://img.jcabi.com/logo-square.svg" width="64px" height="64px" />
 
-[![Managed by Zerocracy](http://www.zerocracy.com/badge.svg)](http://www.zerocracy.com)
+[![Managed by Zerocracy](http://www.0crat.com/badge/C3RUBL5H9.svg)](http://www.0crat.com/p/C3RUBL5H9)
 [![DevOps By Rultor.com](http://www.rultor.com/b/jcabi/jcabi-immutable)](http://www.rultor.com/p/jcabi/jcabi-immutable)
 
 [![Build Status](https://travis-ci.org/jcabi/jcabi-immutable.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-immutable)
