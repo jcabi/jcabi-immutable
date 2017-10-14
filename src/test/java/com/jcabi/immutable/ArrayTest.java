@@ -132,6 +132,19 @@ public final class ArrayTest {
     }
 
     /**
+     * Array can encapsulate another Array instance.
+     */
+    @Test
+    public void encapsulatesArrays() {
+        final Array<Integer> array = new Array<Integer>(Tv.TEN, Tv.FIVE);
+        array.with(Tv.MILLION);
+        MatcherAssert.assertThat(
+                new Array<Integer>(array),
+                Matchers.hasItem(Tv.TEN)
+        );
+    }
+
+    /**
      * Array can find index of an object.
      * @throws Exception If some problem inside
      */

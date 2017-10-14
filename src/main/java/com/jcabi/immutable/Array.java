@@ -90,20 +90,29 @@ public final class Array<T> implements List<T> {
                 "list of objects can't be NULL"
             );
         }
-        if (list instanceof Array) {
-            this.values = ((Array<T>) list).values;
-        } else if (list instanceof Collection) {
-            final Collection<T> col = Collection.class.cast(list);
-            this.values = (T[]) new Object[col.size()];
-            col.toArray(this.values);
-        } else {
-            final Collection<T> items = new LinkedList<T>();
-            for (final T item : list) {
-                items.add(item);
-            }
-            this.values = (T[]) new Object[items.size()];
-            items.toArray(this.values);
+        final Collection<T> items = new LinkedList<T>();
+        for (final T item : list) {
+            items.add(item);
         }
+        this.values = (T[]) new Object[items.size()];
+        items.toArray(this.values);
+    }
+
+    /**
+     * Public ctor, from a generic array.
+     * @param array Array with items to encapsulate
+     */
+    public Array(final Array<T> array) {
+        this.values = array.values.clone();
+    }
+
+    /**
+     * Public ctor, from a generic collection.
+     * @param collection Collection with items to encapsulate
+     */
+    public Array(final Collection<T> collection) {
+        this.values = (T[]) new Object[collection.size()];
+        collection.toArray(this.values);
     }
 
     /**
