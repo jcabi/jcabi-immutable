@@ -110,39 +110,57 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @param set Original set
      * @param comparator Comparator to use
      */
-    public ArraySortedSet(final Iterable<T> set,
+    public ArraySortedSet(final ArraySortedSet<T> set,
         final ArrayComparator<T> comparator) {
-        if (set == null) {
-            throw new IllegalArgumentException(
-                "first argument of ArraySortedSet ctor can't be NULL"
-            );
-        }
-        if (comparator == null) {
-            throw new IllegalArgumentException(
-                "second argument of ArraySortedSet ctor can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            set, "arraySortedSet argument of ArraySortedSet ctor can't be NULL"
+        );
+        this.throwIfComparatorArgumentIsNull(comparator);
         this.cmp = comparator;
-        if (set instanceof ArraySortedSet) {
-            final ArraySortedSet<T> origin = (ArraySortedSet<T>) set;
-            if (origin.cmp.equals(this.cmp)) {
-                this.values = origin.values;
-            } else {
-                final Set<T> hset = new TreeSet<T>(this.cmp);
-                hset.addAll(Collection.class.cast(set));
-                this.values = hset.toArray((T[]) new Object[hset.size()]);
-            }
-        } else if (set instanceof Collection) {
+        final ArraySortedSet<T> origin = set;
+        if (origin.cmp.equals(this.cmp)) {
+            this.values = origin.values;
+        } else {
             final Set<T> hset = new TreeSet<T>(this.cmp);
             hset.addAll(Collection.class.cast(set));
             this.values = hset.toArray((T[]) new Object[hset.size()]);
-        } else {
-            final Set<T> hset = new TreeSet<T>(this.cmp);
-            for (final T item : set) {
-                hset.add(item);
-            }
-            this.values = hset.toArray((T[]) new Object[hset.size()]);
         }
+    }
+
+    /**
+     * Public ctor.
+     * @param set Original set
+     * @param comparator Comparator to use
+     */
+    public ArraySortedSet(final Collection<T> set,
+                          final ArrayComparator<T> comparator) {
+        this.throwIfArgumentIsNull(
+            set, "collection argument of ArraySortedSet ctor can't be NULL"
+        );
+        this.throwIfComparatorArgumentIsNull(comparator);
+        this.cmp = comparator;
+        final Set<T> hset = new TreeSet<T>(this.cmp);
+        hset.addAll(Collection.class.cast(set));
+        this.values = hset.toArray((T[]) new Object[hset.size()]);
+    }
+
+    /**
+     * Public ctor.
+     * @param set Original set
+     * @param comparator Comparator to use
+     */
+    public ArraySortedSet(final Iterable<T> set,
+                          final ArrayComparator<T> comparator) {
+        this.throwIfArgumentIsNull(
+            set, "iterable argument of ArraySortedSet ctor can't be NULL"
+        );
+        this.throwIfComparatorArgumentIsNull(comparator);
+        this.cmp = comparator;
+        final Set<T> hset = new TreeSet<T>(this.cmp);
+        for (final T item : set) {
+            hset.add(item);
+        }
+        this.values = hset.toArray((T[]) new Object[hset.size()]);
     }
 
     /**
@@ -151,11 +169,9 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @return New set
      */
     public ArraySortedSet<T> with(final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "argument of ArraySortedSet#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "argument of ArraySortedSet#with() can't be NULL"
+        );
         final Collection<T> list = new TreeSet<T>(this.cmp);
         list.addAll(this);
         list.remove(value);
@@ -169,11 +185,9 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @return New set
      */
     public ArraySortedSet<T> with(final Collection<T> vals) {
-        if (vals == null) {
-            throw new IllegalArgumentException(
-                "arguments of ArraySortedSet#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            vals, "arguments of ArraySortedSet#with() can't be NULL"
+        );
         final Collection<T> list = new TreeSet<T>(this.cmp);
         list.addAll(this);
         list.removeAll(vals);
@@ -187,11 +201,9 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @return New set
      */
     public ArraySortedSet<T> without(final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "argument of ArraySortedSet#without() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "argument of ArraySortedSet#without() can't be NULL"
+        );
         final Collection<T> list = new TreeSet<T>(this.cmp);
         list.addAll(this);
         list.remove(value);
@@ -359,4 +371,24 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         );
     }
 
+    /**
+     * Throws IllegalArgumentException if the input parameter is null.
+     * @param comp Comparator to check its nullity
+     */
+    private void throwIfComparatorArgumentIsNull(final Comparator<T> comp) {
+        this.throwIfArgumentIsNull(
+            comp, "comparator argument of ArraySortedSet ctor can't be NULL"
+        );
+    }
+
+    /**
+     * Throws IllegalArgumentException if the input parameter is null.
+     * @param obj Object to check its nullity
+     * @param message Message to send with the exception
+     */
+    private void throwIfArgumentIsNull(final Object obj, final String message) {
+        if (obj == null) {
+            throw new IllegalArgumentException(message);
+        }
+    }
 }

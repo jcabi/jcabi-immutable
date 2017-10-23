@@ -85,11 +85,7 @@ public final class Array<T> implements List<T> {
      * @since 0.12
      */
     public Array(final Iterable<T> list) {
-        if (list == null) {
-            throw new IllegalArgumentException(
-                "list of objects can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(list, "list of objects can't be NULL");
         final Collection<T> items = new LinkedList<T>();
         for (final T item : list) {
             items.add(item);
@@ -122,11 +118,9 @@ public final class Array<T> implements List<T> {
      * @return New vector
      */
     public Array<T> with(final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "argument of Array#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "argument of Array#with() can't be NULL"
+        );
         final T[] items = (T[]) new Object[this.values.length + 1];
         System.arraycopy(this.values, 0, items, 0, this.values.length);
         items[this.values.length] = value;
@@ -138,33 +132,37 @@ public final class Array<T> implements List<T> {
      * @param vals The values
      * @return New vector
      */
+    public Array<T> with(final Collection<T> vals) {
+        this.throwIfArgumentIsNull(
+            vals, "Collection argument of Array#with() can't be NULL"
+        );
+        final T[] items = (T[]) new Object[
+            this.values.length + Collection.class.cast(vals).size()
+        ];
+        System.arraycopy(this.values, 0, items, 0, this.values.length);
+        int idx = this.values.length;
+        for (final T value : vals) {
+            items[idx] = value;
+            ++idx;
+        }
+        return new Array<T>(items);
+    }
+
+    /**
+     * Make a new extra entries, at the end of array.
+     * @param vals The values
+     * @return New vector
+     */
     public Array<T> with(final Iterable<T> vals) {
-        if (vals == null) {
-            throw new IllegalArgumentException(
-                "arguments of Array#with() can't be NULL"
-            );
+        this.throwIfArgumentIsNull(
+            vals, "Iterable argument of Array#with() can't be NULL"
+        );
+        final Collection<T> list = new LinkedList<T>();
+        list.addAll(Arrays.asList(this.values));
+        for (final T value : vals) {
+            list.add(value);
         }
-        final Array<T> array;
-        if (vals instanceof Collection) {
-            final T[] items = (T[]) new Object[
-                this.values.length + Collection.class.cast(vals).size()
-            ];
-            System.arraycopy(this.values, 0, items, 0, this.values.length);
-            int idx = this.values.length;
-            for (final T value : vals) {
-                items[idx] = value;
-                ++idx;
-            }
-            array = new Array<T>(items);
-        } else {
-            final Collection<T> list = new LinkedList<T>();
-            list.addAll(Arrays.asList(this.values));
-            for (final T value : vals) {
-                list.add(value);
-            }
-            array = new Array<T>(list);
-        }
-        return array;
+        return new Array<T>(list);
     }
 
     /**
@@ -174,11 +172,9 @@ public final class Array<T> implements List<T> {
      * @return New array
      */
     public Array<T> with(final int pos, final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "second argument of Array#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "second argument of Array#with() can't be NULL"
+        );
         final T[] temp = (T[]) new Object[
             Math.max(this.values.length, pos + 1)
         ];
@@ -436,4 +432,14 @@ public final class Array<T> implements List<T> {
         );
     }
 
+    /**
+     * Throws IllegalArgumentException if the input parameter is null.
+     * @param obj Object to check its nullity
+     * @param message Message to send with the exception
+     */
+    private void throwIfArgumentIsNull(final Object obj, final String message) {
+        if (obj == null) {
+            throw new IllegalArgumentException(message);
+        }
+    }
 }

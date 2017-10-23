@@ -75,24 +75,40 @@ public final class ArraySet<T> implements Set<T> {
      * @param set Original set
      * @since 0.12
      */
+    public ArraySet(final ArraySet<T> set) {
+        this.throwIfArgumentIsNull(
+            set, "ArraySet argument of ArraySet ctor can't be NULL"
+        );
+        this.values = set.values;
+    }
+
+    /**
+     * Public ctor.
+     * @param set Original set
+     * @since 0.12
+     */
+    public ArraySet(final Collection<T> set) {
+        this.throwIfArgumentIsNull(
+            set, "Collection argument of ArraySet ctor can't be NULL"
+        );
+        final Set<T> hset = new HashSet<T>(Collection.class.cast(set));
+        this.values = hset.toArray((T[]) new Object[hset.size()]);
+    }
+
+    /**
+     * Public ctor.
+     * @param set Original set
+     * @since 0.12
+     */
     public ArraySet(final Iterable<T> set) {
-        if (set == null) {
-            throw new IllegalArgumentException(
-                "argument of ArraySet ctor can't be NULL"
-            );
+        this.throwIfArgumentIsNull(
+            set, "Iterable argument of ArraySet ctor can't be NULL"
+        );
+        final Set<T> hset = new HashSet<T>(0);
+        for (final T item : set) {
+            hset.add(item);
         }
-        if (set instanceof ArraySet) {
-            this.values = ((ArraySet<T>) set).values;
-        } else if (set instanceof Collection) {
-            final Set<T> hset = new HashSet<T>(Collection.class.cast(set));
-            this.values = hset.toArray((T[]) new Object[hset.size()]);
-        } else {
-            final Set<T> hset = new HashSet<T>(0);
-            for (final T item : set) {
-                hset.add(item);
-            }
-            this.values = hset.toArray((T[]) new Object[hset.size()]);
-        }
+        this.values = hset.toArray((T[]) new Object[hset.size()]);
     }
 
     /**
@@ -101,11 +117,9 @@ public final class ArraySet<T> implements Set<T> {
      * @return New set
      */
     public ArraySet<T> with(final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "argument of ArraySet#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "argument of ArraySet#with() can't be NULL"
+        );
         final Collection<T> list = new HashSet<T>(this.size() + 1);
         list.addAll(this);
         list.remove(value);
@@ -119,11 +133,9 @@ public final class ArraySet<T> implements Set<T> {
      * @return New set
      */
     public ArraySet<T> with(final Collection<T> vals) {
-        if (vals == null) {
-            throw new IllegalArgumentException(
-                "arguments of ArraySet#with() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            vals, "arguments of ArraySet#with() can't be NULL"
+        );
         final Collection<T> list = new HashSet<T>(this.size());
         list.addAll(this);
         list.removeAll(vals);
@@ -137,11 +149,9 @@ public final class ArraySet<T> implements Set<T> {
      * @return New set
      */
     public ArraySet<T> without(final T value) {
-        if (value == null) {
-            throw new IllegalArgumentException(
-                "argument of ArraySet#without() can't be NULL"
-            );
-        }
+        this.throwIfArgumentIsNull(
+            value, "argument of ArraySet#without() can't be NULL"
+        );
         final Collection<T> list = new LinkedList<T>();
         list.addAll(this);
         list.remove(value);
@@ -267,4 +277,18 @@ public final class ArraySet<T> implements Set<T> {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Throws IllegalArgumentException if the input parameter is null.
+     * @param obj Object to check its nullity
+     * @param which Appellation of object
+     */
+    private void throwIfArgumentIsNull(final Object obj, final String which) {
+        if (obj == null) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "%s argument of ArraySortedSet ctor can't be NULL", which
+                )
+            );
+        }
+    }
 }
