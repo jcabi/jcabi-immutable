@@ -45,7 +45,7 @@ import java.util.TreeSet;
  * Sorted Set on top of array.
  *
  * <p>This class is truly immutable. This means that it never changes
- * its encapsulated values and is annotated with {@code &#64;Immutable}
+ * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
  *
  * @param <T> Value key type
