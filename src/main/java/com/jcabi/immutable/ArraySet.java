@@ -46,7 +46,8 @@ import java.util.Set;
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
  * <p>
- * Limitation: Encapsulated objects with exposed mutators can mutate their state.
+ * Limitation:
+ * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <T> Value key type
  * @author Yegor Bugayenko (yegor@tpc2.com)
