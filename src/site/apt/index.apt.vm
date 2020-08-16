@@ -69,6 +69,10 @@ Immutable Collections
 </dependency>
 +--
 
+Limitation
+
+  Encapsulated objects with exposed mutators can mutate their state.
+
 * Cutting Edge Version
 
   If you want to use current version of the product, you can do it with
