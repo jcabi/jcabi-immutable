@@ -47,6 +47,9 @@ import java.util.TreeSet;
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
+ * <p>
+ * Limitation:
+ * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <T> Value key type
  * @author Yegor Bugayenko (yegor@tpc2.com)

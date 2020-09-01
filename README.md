@@ -14,6 +14,10 @@ More details are here: [immutable.jcabi.com](http://immutable.jcabi.com/index.ht
 This module contains truly immutable collections of objects, including
 `Array`, `ArraySet`, and `ArrayMap`.
 
+## Limitation
+
+Encapsulated objects with exposed mutators can mutate their state.
+
 ## Questions?
 
 If you have any questions about the framework, or something doesn't work as expected,

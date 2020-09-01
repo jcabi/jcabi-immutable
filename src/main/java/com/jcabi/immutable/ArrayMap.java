@@ -51,6 +51,9 @@ import java.util.concurrent.ConcurrentMap;
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
+ * <p>
+ * Limitation:
+ * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <K> Map key type
  * @param <V> Value key type
