@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -46,8 +46,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Map on top of array.
- *
+* Map on top of array.
+*
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
@@ -57,8 +57,6 @@ import java.util.concurrent.ConcurrentMap;
  *
  * @param <K> Map key type
  * @param <V> Value key type
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1
  * @checkstyle MissingDeprecatedCheck (400 lines)
  */
@@ -92,11 +90,11 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             );
         }
         final Set<ArrayMap.ImmutableEntry<K, V>> entrs =
-            new TreeSet<ArrayMap.ImmutableEntry<K, V>>(
-                new ArrayMap.Cmp<K, V>()
+            new TreeSet<>(
+                new ArrayMap.Cmp<>()
             );
         for (final Map.Entry<K, V> entry : map.entrySet()) {
-            entrs.add(new ArrayMap.ImmutableEntry<K, V>(entry));
+            entrs.add(new ArrayMap.ImmutableEntry<>(entry));
         }
         this.entries = entrs.toArray(new ArrayMap.ImmutableEntry[entrs.size()]);
     }
@@ -119,7 +117,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             );
         }
         final ConcurrentMap<K, V> map =
-            new ConcurrentHashMap<K, V>(this.entries.length);
+            new ConcurrentHashMap<>(this.entries.length);
         map.putAll(this);
         map.put(key, value);
         return new ArrayMap<K, V>(map);
@@ -138,10 +136,10 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             );
         }
         final ConcurrentMap<K, V> map =
-            new ConcurrentHashMap<K, V>(this.entries.length);
+            new ConcurrentHashMap<>(this.entries.length);
         map.putAll(this);
         map.putAll(ents);
-        return new ArrayMap<K, V>(map);
+        return new ArrayMap<>(map);
     }
 
     /**
@@ -156,10 +154,10 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             );
         }
         final ConcurrentMap<K, V> map =
-            new ConcurrentHashMap<K, V>(this.entries.length);
+            new ConcurrentHashMap<>(this.entries.length);
         map.putAll(this);
         map.remove(key);
-        return new ArrayMap<K, V>(map);
+        return new ArrayMap<>(map);
     }
 
     /**
@@ -175,12 +173,12 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             );
         }
         final ConcurrentMap<K, V> map =
-            new ConcurrentHashMap<K, V>(this.entries.length);
+            new ConcurrentHashMap<>(this.entries.length);
         map.putAll(this);
         for (final K key : keys) {
             map.remove(key);
         }
-        return new ArrayMap<K, V>(map);
+        return new ArrayMap<>(map);
     }
 
     @Override
@@ -320,7 +318,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     @Override
     public Set<K> keySet() {
-        final Set<K> keys = new LinkedHashSet<K>(this.entries.length);
+        final Set<K> keys = new LinkedHashSet<>(this.entries.length);
         for (final Map.Entry<K, V> entry : this.entries) {
             keys.add(entry.getKey());
         }
@@ -329,7 +327,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     @Override
     public Collection<V> values() {
-        final Collection<V> values = new ArrayList<V>(this.entries.length);
+        final Collection<V> values = new ArrayList<>(this.entries.length);
         for (final Map.Entry<K, V> entry : this.entries) {
             values.add(entry.getValue());
         }
@@ -345,6 +343,9 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Comparator.
+     * @param <K> Key type.
+     * @param <V> Value type.
+     * @since 0.1
      */
     private static final class Cmp<K, V> implements
         Comparator<ArrayMap.ImmutableEntry<K, V>>, Serializable {
@@ -352,10 +353,11 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
          * The Serial version UID.
          */
         private static final long serialVersionUID = 4064118000237204080L;
+
         @Override
         public int compare(final ImmutableEntry<K, V> left,
             final ImmutableEntry<K, V> right) {
-            int compare;
+            final int compare;
             if (left.getKey() instanceof Comparable) {
                 compare = Comparable.class.cast(left.getKey())
                     .compareTo(right.getKey());
@@ -369,6 +371,9 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Immutable map entry.
+     * @param <K> Key type.
+     * @param <V> Value type.
+     * @since 0.1
      */
     @Immutable
     private static final class ImmutableEntry<K, V> extends
@@ -377,6 +382,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 1L;
+
         /**
          * Public ctor.
          * @param entry Entry to encapsulate
@@ -384,6 +390,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
         private ImmutableEntry(final Map.Entry<K, V> entry) {
             this(entry.getKey(), entry.getValue());
         }
+
         /**
          * Public ctor.
          * @param key The key
@@ -392,6 +399,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
         private ImmutableEntry(final K key, final V value) {
             super(key, value);
         }
+
         @Override
         public String toString() {
             return String.format("%s=%s", this.getKey(), this.getValue());
