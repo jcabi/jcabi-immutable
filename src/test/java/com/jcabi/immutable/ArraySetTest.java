@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -36,25 +36,24 @@ import java.util.LinkedList;
 import java.util.Set;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ArraySet}.
- * @author Yegor Bugayenko (yegor@woquo.com)
- * @version $Id$
+ * @since 0.1
  */
-public final class ArraySetTest {
+final class ArraySetTest {
 
     /**
      * ArraySet can work as a sorted set.
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksAsANormalSortedSet() throws Exception {
-        final Collection<Integer> list = new LinkedList<Integer>();
+    void worksAsANormalSortedSet() throws Exception {
+        final Collection<Integer> list = new LinkedList<>();
         list.add(Tv.TEN);
         list.add(Tv.FIVE);
-        final Set<Integer> set = new ArraySet<Integer>(list);
+        final Set<Integer> set = new ArraySet<>(list);
         MatcherAssert.assertThat(set, Matchers.hasItem(Tv.TEN));
         MatcherAssert.assertThat(set, Matchers.hasSize(2));
     }
@@ -64,7 +63,7 @@ public final class ArraySetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void buildsSetFluently() throws Exception {
+    void buildsSetFluently() throws Exception {
         MatcherAssert.assertThat(
             new ArraySet<Integer>()
                 .with(Tv.TEN)
@@ -86,7 +85,7 @@ public final class ArraySetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void comparesWithAnotherArraySet() throws Exception {
+    void comparesWithAnotherArraySet() throws Exception {
         MatcherAssert.assertThat(
             new ArraySet<Integer>().with(Tv.TEN).with(2),
             Matchers.equalTo(new ArraySet<Integer>().with(2).with(Tv.TEN))
@@ -99,7 +98,7 @@ public final class ArraySetTest {
      * @since 0.12
      */
     @Test
-    public void encapsulatesIterables() throws Exception {
+    void encapsulatesIterables() throws Exception {
         final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE);
         MatcherAssert.assertThat(
             new ArraySet<Integer>(list),

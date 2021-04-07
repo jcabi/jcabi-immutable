@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -34,28 +34,27 @@ import java.util.Arrays;
 import java.util.SortedSet;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ArraySortedSet}.
- * @author Yegor Bugayenko (yegor@woquo.com)
- * @version $Id$
+ * @since 0.1
  */
-public final class ArraySortedSetTest {
+final class ArraySortedSetTest {
 
     /**
      * Simple comparator.
      */
     private static final ArrayComparator<Integer> CMP =
-        new ArrayComparator.Default<Integer>();
+        new ArrayComparator.Default<>();
 
     /**
      * ArraySortedSet can work as a sorted set.
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksAsNormalSortedSet() throws Exception {
-        final SortedSet<Integer> set = new ArraySortedSet<Integer>(
+    void worksAsNormalSortedSet() throws Exception {
+        final SortedSet<Integer> set = new ArraySortedSet<>(
             Arrays.asList(Tv.TEN, Tv.FIVE)
         );
         MatcherAssert.assertThat(set, Matchers.hasItem(Tv.TEN));
@@ -69,7 +68,7 @@ public final class ArraySortedSetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void buildsSetFluently() throws Exception {
+    void buildsSetFluently() throws Exception {
         MatcherAssert.assertThat(
             new ArraySortedSet<Integer>(ArraySortedSetTest.CMP)
                 .with(Tv.TEN)
@@ -91,7 +90,7 @@ public final class ArraySortedSetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void comparesWithAnotherArraySortedSet() throws Exception {
+    void comparesWithAnotherArraySortedSet() throws Exception {
         MatcherAssert.assertThat(
             new ArraySortedSet<Integer>(ArraySortedSetTest.CMP)
                 .with(Tv.TEN).with(2),
@@ -108,7 +107,7 @@ public final class ArraySortedSetTest {
      * @since 0.12
      */
     @Test
-    public void encapsulatesIterables() throws Exception {
+    void encapsulatesIterables() throws Exception {
         final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE, Tv.SEVEN);
         MatcherAssert.assertThat(
             new ArraySortedSet<Integer>(list),
@@ -121,7 +120,7 @@ public final class ArraySortedSetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksWithCustomComparator() throws Exception {
+    void worksWithCustomComparator() throws Exception {
         final String first = "some text that is long";
         final String second = "short text";
         MatcherAssert.assertThat(
@@ -143,10 +142,10 @@ public final class ArraySortedSetTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void replacesComparator() throws Exception {
+    void replacesComparator() throws Exception {
         final String first = "B very long long text";
         final String second = "A short text";
-        final SortedSet<String> origin = new ArraySortedSet<String>(
+        final SortedSet<String> origin = new ArraySortedSet<>(
             Arrays.asList(second, first),
             new ArrayComparator<String>() {
                 @Override
