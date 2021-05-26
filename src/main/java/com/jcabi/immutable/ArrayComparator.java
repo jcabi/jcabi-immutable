@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -37,8 +37,6 @@ import java.util.Comparator;
  * Comparator for arrays.
  *
  * @param <T> Value type
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 1.0
  */
 @Immutable
@@ -48,6 +46,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
     /**
      * Default comparator.
      * @param <T> Type of argument
+     * @since 1.0
      */
     @Immutable
     final class Default<T> implements ArrayComparator<T>, Serializable {
@@ -55,10 +54,12 @@ public interface ArrayComparator<T> extends Comparator<T> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 0x54ef44fb3ef2efa3L;
+
         @Override
         public String toString() {
             return "DEFAULT";
         }
+
         @Override
         public int compare(final T left, final T right) {
             return ((Comparable<T>) left).compareTo(right);
@@ -68,6 +69,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
     /**
      * Neutral comparator (never compares).
      * @param <T> Type of argument
+     * @since 1.0
      */
     @Immutable
     final class Neutral<T> implements ArrayComparator<T>, Serializable {
@@ -75,10 +77,12 @@ public interface ArrayComparator<T> extends Comparator<T> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 0x54ef489b3ef2eca3L;
+
         @Override
         public String toString() {
             return "NEUTRAL";
         }
+
         @Override
         public int compare(final T left, final T right) {
             return 1;
@@ -88,6 +92,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
     /**
      * Reverse comparator.
      * @param <T> Type of argument
+     * @since 1.0
      */
     @Immutable
     final class Reverse<T extends Comparable<T>> implements ArrayComparator<T>,
@@ -96,10 +101,12 @@ public interface ArrayComparator<T> extends Comparator<T> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 0x545f489d3ed2eca3L;
+
         @Override
         public String toString() {
             return "REVERSE";
         }
+
         @Override
         public int compare(final T left, final T right) {
             return right.compareTo(left);

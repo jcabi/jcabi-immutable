@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -35,27 +35,26 @@ import java.util.Collection;
 import java.util.LinkedList;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Array}.
- * @author Yegor Bugayenko (yegor@woquo.com)
- * @version $Id$
+ * @since 0.1
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class ArrayTest {
+final class ArrayTest {
 
     /**
      * Array can work as an array.
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksAsANormalArray() throws Exception {
-        final Collection<Integer> list = new LinkedList<Integer>();
+    void worksAsANormalArray() throws Exception {
+        final Collection<Integer> list = new LinkedList<>();
         list.add(Tv.TEN);
         list.add(Tv.FIVE);
-        final Collection<Integer> array = new Array<Integer>(list);
+        final Collection<Integer> array = new Array<>(list);
         MatcherAssert.assertThat(array, Matchers.hasItem(Tv.TEN));
         MatcherAssert.assertThat(array, Matchers.hasSize(2));
     }
@@ -65,7 +64,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void buildsArrayFluently() throws Exception {
+    void buildsArrayFluently() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>()
                 .with(Tv.FIVE)
@@ -86,7 +85,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void removesElementsByIndex() throws Exception {
+    void removesElementsByIndex() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>()
                 .with(Tv.FIVE)
@@ -104,7 +103,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void removesElements() throws Exception {
+    void removesElements() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>()
                 .with(Tv.FIVE)
@@ -123,7 +122,7 @@ public final class ArrayTest {
      * @since 0.12
      */
     @Test
-    public void encapsulatesIterables() throws Exception {
+    void encapsulatesIterables() throws Exception {
         final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE);
         MatcherAssert.assertThat(
             new Array<Integer>(list),
@@ -135,12 +134,12 @@ public final class ArrayTest {
      * Array can encapsulate another Array instance.
      */
     @Test
-    public void encapsulatesArrays() {
-        final Array<Integer> array = new Array<Integer>(Tv.TEN, Tv.FIVE);
+    void encapsulatesArrays() {
+        final Array<Integer> array = new Array<>(Tv.TEN, Tv.FIVE);
         array.with(Tv.MILLION);
         MatcherAssert.assertThat(
-                new Array<Integer>(array),
-                Matchers.hasItem(Tv.TEN)
+            new Array<Integer>(array),
+            Matchers.hasItem(Tv.TEN)
         );
     }
 
@@ -149,7 +148,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void findsIndexOfObject() throws Exception {
+    void findsIndexOfObject() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>(Tv.FIVE, 2, 2, Tv.THREE).indexOf(2),
             Matchers.equalTo(1)
@@ -165,7 +164,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void findsLastIndexOfObject() throws Exception {
+    void findsLastIndexOfObject() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>(1, 1, Tv.TEN, Tv.TEN, Tv.THREE).indexOf(Tv.TEN),
             Matchers.equalTo(2)
@@ -181,7 +180,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void makesListIterator() throws Exception {
+    void makesListIterator() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>(Tv.FIVE, 2, 2, Tv.THREE).listIterator().next(),
             Matchers.equalTo(Tv.FIVE)
@@ -193,7 +192,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void makesListIteratorWithIndex() throws Exception {
+    void makesListIteratorWithIndex() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>(Tv.FIVE, 1, 2, Tv.THREE).listIterator(2).next(),
             Matchers.equalTo(2)
@@ -205,7 +204,7 @@ public final class ArrayTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void makesSubList() throws Exception {
+    void makesSubList() throws Exception {
         MatcherAssert.assertThat(
             new Array<Integer>(Tv.FIVE, 1, 2).subList(1, Tv.THREE),
             Matchers.contains(1, 2)
@@ -218,12 +217,12 @@ public final class ArrayTest {
      * @checkstyle MagicNumberCheck (10 lines)
      */
     @Test
-    public void isIndependentFromCtorParam() throws Exception {
+    void isIndependentFromCtorParam() throws Exception {
         final Integer[] ints = new Integer[] {1, 2, 3};
-        final Array<Integer> array = new Array<Integer>(ints);
+        final Array<Integer> array = new Array<>(ints);
         ints[1] = 0;
-        Assert.assertTrue(
-                Arrays.equals(array.toArray(), new Integer[]{1, 2, 3})
+        Assertions.assertTrue(
+            Arrays.equals(array.toArray(), new Integer[]{1, 2, 3})
         );
     }
 

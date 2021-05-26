@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -34,23 +34,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ArrayMap}.
- * @author Yegor Bugayenko (yegor@woquo.com)
- * @version $Id$
+ * @since 0.1
  */
-public final class ArrayMapTest {
+final class ArrayMapTest {
 
     /**
      * ArrayMap can work as a map.
      * @throws Exception If some problem inside
      */
     @Test
-    public void worksAsANormalMap() throws Exception {
+    void worksAsANormalMap() throws Exception {
         final ConcurrentMap<Integer, String> map =
-            new ConcurrentHashMap<Integer, String>(0);
+            new ConcurrentHashMap<>(0);
         final String value = "first value";
         map.put(1, value);
         map.put(2, "second");
@@ -65,7 +64,7 @@ public final class ArrayMapTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void buildsMapFluently() throws Exception {
+    void buildsMapFluently() throws Exception {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
                 .with(Tv.FIVE, "four")
@@ -87,7 +86,7 @@ public final class ArrayMapTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void comparesCorrectlyWithAnotherMap() throws Exception {
+    void comparesCorrectlyWithAnotherMap() throws Exception {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, Integer>().with(1, 1).with(2, 2),
             Matchers.equalTo(
@@ -111,7 +110,7 @@ public final class ArrayMapTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void sortsKeys() throws Exception {
+    void sortsKeys() throws Exception {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
                 .with(Tv.FIVE, "")
@@ -128,7 +127,7 @@ public final class ArrayMapTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void sortsEntries() throws Exception {
+    void sortsEntries() throws Exception {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
                 .with(Tv.FIVE, "")
@@ -145,7 +144,7 @@ public final class ArrayMapTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void appendsEntireMapToItself() throws Exception {
+    void appendsEntireMapToItself() throws Exception {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>().with(Tv.FIVE, "").with(
                 new ArrayMap<Integer, String>().with(Tv.TEN, "")

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -50,8 +50,6 @@ import java.util.ListIterator;
  * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <T> Value key type
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1
  * @checkstyle MissingDeprecatedCheck (430 lines)
  */
@@ -89,7 +87,7 @@ public final class Array<T> implements List<T> {
      */
     public Array(final Iterable<T> list) {
         this.throwIfArgumentIsNull(list, "list of objects can't be NULL");
-        final Collection<T> items = new LinkedList<T>();
+        final Collection<T> items = new LinkedList<>();
         for (final T item : list) {
             items.add(item);
         }
@@ -160,7 +158,7 @@ public final class Array<T> implements List<T> {
         this.throwIfArgumentIsNull(
             vals, "Iterable argument of Array#with() can't be NULL"
         );
-        final Collection<T> list = new LinkedList<T>();
+        final Collection<T> list = new LinkedList<>();
         list.addAll(Arrays.asList(this.values));
         for (final T value : vals) {
             list.add(value);

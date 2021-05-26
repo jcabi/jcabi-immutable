@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -46,12 +46,13 @@ import java.util.Set;
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
  * <p>
- * Limitation:
+ * Limitations:
  * Encapsulated objects with exposed mutators can mutate their state.
  *
+ * Since this Set implementation is backed by array,<br>
+ * complexity of {@link ArraySet#contains} is (<b>O(n)</b>).
+ *
  * @param <T> Value key type
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1
  * @checkstyle MissingDeprecatedCheck (270 lines)
  */
@@ -94,7 +95,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             set, "Collection argument of ArraySet ctor can't be NULL"
         );
-        final Set<T> hset = new HashSet<T>(Collection.class.cast(set));
+        final Set<T> hset = new HashSet<>(Collection.class.cast(set));
         this.values = hset.toArray((T[]) new Object[hset.size()]);
     }
 
@@ -107,7 +108,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             set, "Iterable argument of ArraySet ctor can't be NULL"
         );
-        final Set<T> hset = new HashSet<T>(0);
+        final Set<T> hset = new HashSet<>(0);
         for (final T item : set) {
             hset.add(item);
         }
@@ -123,7 +124,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             value, "argument of ArraySet#with() can't be NULL"
         );
-        final Collection<T> list = new HashSet<T>(this.size() + 1);
+        final Collection<T> list = new HashSet<>(this.size() + 1);
         list.addAll(this);
         list.remove(value);
         list.add(value);
@@ -139,7 +140,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             vals, "arguments of ArraySet#with() can't be NULL"
         );
-        final Collection<T> list = new HashSet<T>(this.size());
+        final Collection<T> list = new HashSet<>(this.size());
         list.addAll(this);
         list.removeAll(vals);
         list.addAll(vals);
@@ -155,7 +156,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             value, "argument of ArraySet#without() can't be NULL"
         );
-        final Collection<T> list = new LinkedList<T>();
+        final Collection<T> list = new LinkedList<>();
         list.addAll(this);
         list.remove(value);
         return new ArraySet<T>(list);
@@ -201,13 +202,6 @@ public final class ArraySet<T> implements Set<T> {
         return this.values.length == 0;
     }
 
-    /**
-     * Checks if the given object is in this set or not.
-     * Since this Set implementation is backed by array,<br>
-     * complexity of the operation is (<b>O(n)</b>).
-     * @param key The element searched in this set.
-     * @return True if the element is found in the set, or false otherwise.
-     */
     @Override
     public boolean contains(final Object key) {
         return Arrays.asList(this.values).contains(key);
@@ -229,7 +223,7 @@ public final class ArraySet<T> implements Set<T> {
 
     @Override
     public <T> T[] toArray(final T[] array) {
-        T[] dest;
+        final T[] dest;
         if (array.length == this.values.length) {
             dest = array;
         } else {

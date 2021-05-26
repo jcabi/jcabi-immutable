@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012-2017, jcabi.com
  * All rights reserved.
  *
@@ -31,22 +31,20 @@ package com.jcabi.immutable;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ArrayComparator}.
- * @author Igor Piddubnyi (igor.piddubnyi@gmail.com)
- * @version $Id$
  * @since 1.5
  */
-public final class ArrayComparatorTest {
+final class ArrayComparatorTest {
 
     /**
      * ReverseComparator can compare.
      * @throws Exception If fails
      */
     @Test
-    public void reverseComparatorCanCompare() throws Exception {
+    void reverseComparatorCanCompare() throws Exception {
         MatcherAssert.assertThat(
             new ArrayComparator.Reverse<Integer>().compare(1, 2),
             Matchers.greaterThan(0)
