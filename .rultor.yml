@@ -3,8 +3,8 @@ architect:
 - dmarkov
 - andreoss
 install:
-- sudo gem install --no-ri --no-rdoc pdd
-- sudo gem install --no-ri --no-rdoc est
+- sudo gem install pdd
+- sudo gem install est
 - sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
