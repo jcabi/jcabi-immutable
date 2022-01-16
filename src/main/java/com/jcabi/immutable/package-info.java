@@ -40,7 +40,7 @@
  * &lt;/dependency&gt;</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
+ * @version $Id: f972643862b3175dc5b4dc07ae952c89091c0f27 $
  * @since 0.1.10
  * @see <a href="http://www.jcabi.com/jcabi-immutable">project website</a>
  */
