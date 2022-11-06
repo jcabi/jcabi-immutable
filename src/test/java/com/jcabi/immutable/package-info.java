@@ -32,7 +32,7 @@
  * Simple immutable collections, maps, sets, etc.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
+ * @version $Id: 45b36256a1743cb62fe44848019cea9df280588d $
  * @since 0.1.10
  */
 package com.jcabi.immutable;
