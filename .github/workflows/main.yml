@@ -22,7 +22,7 @@ jobs:
       - name: Test
         run: mvn clean test --errors --batch-mode
       - name: CodeCov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.4
         if: matrix.os == 'ubuntu-latest'
         timeout-minutes: 10
         with:
