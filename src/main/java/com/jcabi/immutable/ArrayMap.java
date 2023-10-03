@@ -62,7 +62,12 @@ import java.util.concurrent.ConcurrentMap;
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
-@SuppressWarnings({ "rawtypes", "unchecked", "PMD.TooManyMethods" })
+@SuppressWarnings({
+    "rawtypes", "unchecked",
+    "PMD.TooManyMethods",
+    "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
+    "PMD.OnlyOneConstructorShouldDoInitialization"
+})
 public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
@@ -96,7 +101,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
         for (final Map.Entry<K, V> entry : map.entrySet()) {
             entrs.add(new ArrayMap.ImmutableEntry<>(entry));
         }
-        this.entries = entrs.toArray(new ArrayMap.ImmutableEntry[entrs.size()]);
+        this.entries = entrs.toArray(new ImmutableEntry[0]);
     }
 
     /**
@@ -120,7 +125,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             new ConcurrentHashMap<>(this.entries.length);
         map.putAll(this);
         map.put(key, value);
-        return new ArrayMap<K, V>(map);
+        return new ArrayMap<>(map);
     }
 
     /**

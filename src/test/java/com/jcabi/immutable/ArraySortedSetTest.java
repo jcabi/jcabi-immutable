@@ -29,7 +29,6 @@
  */
 package com.jcabi.immutable;
 
-import com.jcabi.aspects.Tv;
 import java.util.Arrays;
 import java.util.SortedSet;
 import org.hamcrest.MatcherAssert;
@@ -48,83 +47,62 @@ final class ArraySortedSetTest {
     private static final ArrayComparator<Integer> CMP =
         new ArrayComparator.Default<>();
 
-    /**
-     * ArraySortedSet can work as a sorted set.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void worksAsNormalSortedSet() throws Exception {
+    void worksAsNormalSortedSet() {
         final SortedSet<Integer> set = new ArraySortedSet<>(
-            Arrays.asList(Tv.TEN, Tv.FIVE)
+            Arrays.asList(10, 5)
         );
-        MatcherAssert.assertThat(set, Matchers.hasItem(Tv.TEN));
+        MatcherAssert.assertThat(set, Matchers.hasItem(10));
         MatcherAssert.assertThat(set, Matchers.hasSize(2));
-        MatcherAssert.assertThat(set.first(), Matchers.equalTo(Tv.FIVE));
-        MatcherAssert.assertThat(set.last(), Matchers.equalTo(Tv.TEN));
+        MatcherAssert.assertThat(set.first(), Matchers.equalTo(5));
+        MatcherAssert.assertThat(set.last(), Matchers.equalTo(10));
     }
 
-    /**
-     * ArraySortedSet can build set fluently.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void buildsSetFluently() throws Exception {
+    void buildsSetFluently() {
         MatcherAssert.assertThat(
-            new ArraySortedSet<Integer>(ArraySortedSetTest.CMP)
-                .with(Tv.TEN)
-                .with(Tv.FIVE)
-                .with(Tv.FIVE)
-                .with(Tv.THOUSAND)
-                .without(Tv.TEN)
-                .without(Tv.THREE)
-                .without(Tv.THOUSAND),
+            new ArraySortedSet<>(ArraySortedSetTest.CMP)
+                .with(10)
+                .with(5)
+                .with(5)
+                .with(1000)
+                .without(10)
+                .without(3)
+                .without(1000),
             Matchers.allOf(
-                Matchers.<Integer>iterableWithSize(1),
-                Matchers.hasItem(Tv.FIVE)
+                Matchers.iterableWithSize(1),
+                Matchers.hasItem(5)
             )
         );
     }
 
-    /**
-     * ArraySortedSet can compare correctly with another set.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void comparesWithAnotherArraySortedSet() throws Exception {
+    void comparesWithAnotherArraySortedSet() {
         MatcherAssert.assertThat(
-            new ArraySortedSet<Integer>(ArraySortedSetTest.CMP)
-                .with(Tv.TEN).with(2),
+            new ArraySortedSet<>(ArraySortedSetTest.CMP)
+                .with(10).with(2),
             Matchers.equalTo(
-                new ArraySortedSet<Integer>(ArraySortedSetTest.CMP)
-                    .with(2).with(Tv.TEN)
+                new ArraySortedSet<>(ArraySortedSetTest.CMP)
+                    .with(2).with(10)
             )
         );
     }
 
-    /**
-     * ArraySortedSet can encapsulate iterables.
-     * @throws Exception If some problem inside
-     * @since 0.12
-     */
     @Test
-    void encapsulatesIterables() throws Exception {
-        final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE, Tv.SEVEN);
+    void encapsulatesIterables() {
+        final Iterable<Integer> list = Arrays.asList(10, 5, 7);
         MatcherAssert.assertThat(
-            new ArraySortedSet<Integer>(list),
-            Matchers.contains(Tv.FIVE, Tv.SEVEN, Tv.TEN)
+            new ArraySortedSet<>(list),
+            Matchers.contains(5, 7, 10)
         );
     }
 
-    /**
-     * ArraySortedSet can work with a custom comparator.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void worksWithCustomComparator() throws Exception {
+    void worksWithCustomComparator() {
         final String first = "some text that is long";
         final String second = "short text";
         MatcherAssert.assertThat(
-            new ArraySortedSet<String>(
+            new ArraySortedSet<>(
                 Arrays.asList(second, first),
                 new ArrayComparator<String>() {
                     @Override
@@ -137,12 +115,8 @@ final class ArraySortedSetTest {
         );
     }
 
-    /**
-     * ArraySortedSet can replace a comparator of an another ArraySortedSet.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void replacesComparator() throws Exception {
+    void replacesComparator() {
         final String first = "B very long long text";
         final String second = "A short text";
         final SortedSet<String> origin = new ArraySortedSet<>(
@@ -155,9 +129,9 @@ final class ArraySortedSetTest {
             }
         );
         MatcherAssert.assertThat(
-            new ArraySortedSet<String>(
+            new ArraySortedSet<>(
                 origin,
-                new ArrayComparator.Default<String>()
+                new ArrayComparator.Default<>()
             ),
             Matchers.contains(second, first)
         );

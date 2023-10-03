@@ -39,12 +39,8 @@ import org.junit.jupiter.api.Test;
  */
 final class ArrayComparatorTest {
 
-    /**
-     * ReverseComparator can compare.
-     * @throws Exception If fails
-     */
     @Test
-    void reverseComparatorCanCompare() throws Exception {
+    void reverseComparatorCanCompare() {
         MatcherAssert.assertThat(
             new ArrayComparator.Reverse<Integer>().compare(1, 2),
             Matchers.greaterThan(0)

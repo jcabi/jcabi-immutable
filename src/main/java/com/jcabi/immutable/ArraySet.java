@@ -58,7 +58,11 @@ import java.util.Set;
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
-@SuppressWarnings({ "unchecked", "PMD.TooManyMethods" })
+@SuppressWarnings({
+    "unchecked", "PMD.TooManyMethods",
+    "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
+    "PMD.OnlyOneConstructorShouldDoInitialization"
+})
 public final class ArraySet<T> implements Set<T> {
 
     /**
@@ -128,7 +132,7 @@ public final class ArraySet<T> implements Set<T> {
         list.addAll(this);
         list.remove(value);
         list.add(value);
-        return new ArraySet<T>(list);
+        return new ArraySet<>(list);
     }
 
     /**
@@ -144,7 +148,7 @@ public final class ArraySet<T> implements Set<T> {
         list.addAll(this);
         list.removeAll(vals);
         list.addAll(vals);
-        return new ArraySet<T>(list);
+        return new ArraySet<>(list);
     }
 
     /**
@@ -159,7 +163,7 @@ public final class ArraySet<T> implements Set<T> {
         final Collection<T> list = new LinkedList<>();
         list.addAll(this);
         list.remove(value);
-        return new ArraySet<T>(list);
+        return new ArraySet<>(list);
     }
 
     @Override

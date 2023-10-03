@@ -29,7 +29,6 @@
  */
 package com.jcabi.immutable;
 
-import com.jcabi.aspects.Tv;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.hamcrest.MatcherAssert;
@@ -42,51 +41,39 @@ import org.junit.jupiter.api.Test;
  */
 final class ArrayMapTest {
 
-    /**
-     * ArrayMap can work as a map.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void worksAsANormalMap() throws Exception {
+    void worksAsANormalMap() {
         final ConcurrentMap<Integer, String> map =
             new ConcurrentHashMap<>(0);
         final String value = "first value";
         map.put(1, value);
         map.put(2, "second");
         MatcherAssert.assertThat(
-            new ArrayMap<Integer, String>(map),
+            new ArrayMap<>(map),
             Matchers.hasEntry(1, value)
         );
     }
 
-    /**
-     * ArrayMap can make a map fluently.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void buildsMapFluently() throws Exception {
+    void buildsMapFluently() {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
-                .with(Tv.FIVE, "four")
-                .with(Tv.FIVE, Integer.toString(Tv.FIVE))
-                .with(Tv.FORTY, "fourty")
-                .without(Tv.FORTY)
-                .with(Tv.TEN, "ten"),
+                .with(5, "four")
+                .with(5, Integer.toString(5))
+                .with(40, "fourty")
+                .without(40)
+                .with(10, "ten"),
             Matchers.allOf(
-                Matchers.not(Matchers.hasKey(Tv.FORTY)),
-                Matchers.hasValue(Integer.toString(Tv.FIVE)),
-                Matchers.hasKey(Tv.FIVE),
-                Matchers.hasEntry(Tv.FIVE, Integer.toString(Tv.FIVE))
+                Matchers.not(Matchers.hasKey(40)),
+                Matchers.hasValue(Integer.toString(5)),
+                Matchers.hasKey(5),
+                Matchers.hasEntry(5, Integer.toString(5))
             )
         );
     }
 
-    /**
-     * ArrayMap can be equal to another map.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void comparesCorrectlyWithAnotherMap() throws Exception {
+    void comparesCorrectlyWithAnotherMap() {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, Integer>().with(1, 1).with(2, 2),
             Matchers.equalTo(
@@ -105,51 +92,39 @@ final class ArrayMapTest {
         );
     }
 
-    /**
-     * ArrayMap can sort keys.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void sortsKeys() throws Exception {
+    void sortsKeys() {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
-                .with(Tv.FIVE, "")
-                .with(Tv.FOUR, "")
+                .with(5, "")
+                .with(4, "")
                 .with(1, "")
-                .with(Tv.TEN, "")
+                .with(10, "")
                 .keySet(),
             Matchers.hasToString("[1, 4, 5, 10]")
         );
     }
 
-    /**
-     * ArrayMap can sort entries.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void sortsEntries() throws Exception {
+    void sortsEntries() {
         MatcherAssert.assertThat(
             new ArrayMap<Integer, String>()
-                .with(Tv.FIVE, "")
-                .with(Tv.FOUR, "")
+                .with(5, "")
+                .with(4, "")
                 .with(1, "")
-                .with(Tv.TEN, "")
+                .with(10, "")
                 .entrySet(),
             Matchers.hasToString("[1=, 4=, 5=, 10=]")
         );
     }
 
-    /**
-     * ArrayMap can add maps.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void appendsEntireMapToItself() throws Exception {
+    void appendsEntireMapToItself() {
         MatcherAssert.assertThat(
-            new ArrayMap<Integer, String>().with(Tv.FIVE, "").with(
-                new ArrayMap<Integer, String>().with(Tv.TEN, "")
+            new ArrayMap<Integer, String>().with(5, "").with(
+                new ArrayMap<Integer, String>().with(10, "")
             ),
-            Matchers.hasKey(Tv.TEN)
+            Matchers.hasKey(10)
         );
     }
 

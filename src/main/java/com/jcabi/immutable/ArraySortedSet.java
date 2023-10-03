@@ -57,7 +57,11 @@ import java.util.TreeSet;
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
-@SuppressWarnings({ "unchecked", "PMD.TooManyMethods" })
+@SuppressWarnings({
+    "unchecked", "PMD.TooManyMethods",
+    "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
+    "PMD.OnlyOneConstructorShouldDoInitialization"
+})
 public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
@@ -103,7 +107,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
      * @since 0.12
      */
     public ArraySortedSet(final Iterable<T> set) {
-        this(set, new ArrayComparator.Default<T>());
+        this(set, new ArrayComparator.Default<>());
     }
 
     /**
@@ -181,7 +185,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         list.addAll(this);
         list.remove(value);
         list.add(value);
-        return new ArraySortedSet<T>(list, this.cmp);
+        return new ArraySortedSet<>(list, this.cmp);
     }
 
     /**
@@ -197,7 +201,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         list.addAll(this);
         list.removeAll(vals);
         list.addAll(vals);
-        return new ArraySortedSet<T>(list, this.cmp);
+        return new ArraySortedSet<>(list, this.cmp);
     }
 
     /**
@@ -212,7 +216,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         final Collection<T> list = new TreeSet<>(this.cmp);
         list.addAll(this);
         list.remove(value);
-        return new ArraySortedSet<T>(list, this.cmp);
+        return new ArraySortedSet<>(list, this.cmp);
     }
 
     @Override
@@ -263,21 +267,21 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     @Override
     public SortedSet<T> subSet(final T from, final T till) {
         return Collections.unmodifiableSortedSet(
-            new TreeSet<T>(this).subSet(from, till)
+            new TreeSet<>(this).subSet(from, till)
         );
     }
 
     @Override
     public SortedSet<T> headSet(final T till) {
         return Collections.unmodifiableSortedSet(
-            new TreeSet<T>(this)
+            new TreeSet<>(this)
         ).headSet(till);
     }
 
     @Override
     public SortedSet<T> tailSet(final T from) {
         return Collections.unmodifiableSortedSet(
-            new TreeSet<T>(this)
+            new TreeSet<>(this)
         ).tailSet(from);
     }
 

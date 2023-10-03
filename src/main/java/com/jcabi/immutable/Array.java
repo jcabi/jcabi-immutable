@@ -55,7 +55,11 @@ import java.util.ListIterator;
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
-@SuppressWarnings({ "unchecked", "PMD.TooManyMethods" })
+@SuppressWarnings({
+    "unchecked", "PMD.TooManyMethods",
+    "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
+    "PMD.OnlyOneConstructorShouldDoInitialization"
+})
 public final class Array<T> implements List<T> {
 
     /**
@@ -125,7 +129,7 @@ public final class Array<T> implements List<T> {
         final T[] items = (T[]) new Object[this.values.length + 1];
         System.arraycopy(this.values, 0, items, 0, this.values.length);
         items[this.values.length] = value;
-        return new Array<T>(items);
+        return new Array<>(items);
     }
 
     /**
@@ -146,7 +150,7 @@ public final class Array<T> implements List<T> {
             items[idx] = value;
             ++idx;
         }
-        return new Array<T>(items);
+        return new Array<>(items);
     }
 
     /**
@@ -163,7 +167,7 @@ public final class Array<T> implements List<T> {
         for (final T value : vals) {
             list.add(value);
         }
-        return new Array<T>(list);
+        return new Array<>(list);
     }
 
     /**
@@ -181,7 +185,7 @@ public final class Array<T> implements List<T> {
         ];
         System.arraycopy(this.values, 0, temp, 0, this.values.length);
         temp[pos] = value;
-        return new Array<T>(temp);
+        return new Array<>(temp);
     }
 
     /**
@@ -212,7 +216,7 @@ public final class Array<T> implements List<T> {
         System.arraycopy(
             this.values, idx + 1, items, idx, this.values.length - idx - 1
         );
-        return new Array<T>(items);
+        return new Array<>(items);
     }
 
     /**

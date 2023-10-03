@@ -29,7 +29,6 @@
  */
 package com.jcabi.immutable;
 
-import com.jcabi.aspects.Tv;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -44,65 +43,48 @@ import org.junit.jupiter.api.Test;
  */
 final class ArraySetTest {
 
-    /**
-     * ArraySet can work as a sorted set.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void worksAsANormalSortedSet() throws Exception {
+    void worksAsANormalSortedSet() {
         final Collection<Integer> list = new LinkedList<>();
-        list.add(Tv.TEN);
-        list.add(Tv.FIVE);
+        list.add(10);
+        list.add(5);
         final Set<Integer> set = new ArraySet<>(list);
-        MatcherAssert.assertThat(set, Matchers.hasItem(Tv.TEN));
+        MatcherAssert.assertThat(set, Matchers.hasItem(10));
         MatcherAssert.assertThat(set, Matchers.hasSize(2));
     }
 
-    /**
-     * ArraySet can build set fluently.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void buildsSetFluently() throws Exception {
+    void buildsSetFluently() {
         MatcherAssert.assertThat(
             new ArraySet<Integer>()
-                .with(Tv.TEN)
-                .with(Tv.FIVE)
-                .with(Tv.FIVE)
-                .with(Tv.THOUSAND)
-                .without(Tv.TEN)
-                .without(Tv.THREE)
-                .without(Tv.THOUSAND),
+                .with(10)
+                .with(5)
+                .with(5)
+                .with(1000)
+                .without(10)
+                .without(3)
+                .without(1000),
             Matchers.allOf(
                 Matchers.<Integer>iterableWithSize(1),
-                Matchers.hasItem(Tv.FIVE)
+                Matchers.hasItem(5)
             )
         );
     }
 
-    /**
-     * ArraySet can compare correctly with another set.
-     * @throws Exception If some problem inside
-     */
     @Test
-    void comparesWithAnotherArraySet() throws Exception {
+    void comparesWithAnotherArraySet() {
         MatcherAssert.assertThat(
-            new ArraySet<Integer>().with(Tv.TEN).with(2),
-            Matchers.equalTo(new ArraySet<Integer>().with(2).with(Tv.TEN))
+            new ArraySet<Integer>().with(10).with(2),
+            Matchers.equalTo(new ArraySet<Integer>().with(2).with(10))
         );
     }
 
-    /**
-     * ArraySet can encapsulate iterables.
-     * @throws Exception If some problem inside
-     * @since 0.12
-     */
     @Test
-    void encapsulatesIterables() throws Exception {
-        final Iterable<Integer> list = Arrays.asList(Tv.TEN, Tv.FIVE);
+    void encapsulatesIterables() {
+        final Iterable<Integer> list = Arrays.asList(10, 5);
         MatcherAssert.assertThat(
-            new ArraySet<Integer>(list),
-            Matchers.hasItem(Tv.TEN)
+            new ArraySet<>(list),
+            Matchers.hasItem(10)
         );
     }
 
