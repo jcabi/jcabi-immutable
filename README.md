@@ -1,7 +1,6 @@
 <img src="https://www.jcabi.com/logo-square.svg" width="64px" height="64px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![Managed by Zerocracy](https://www.0crat.com/badge/C3RUBL5H9.svg)](https://www.0crat.com/p/C3RUBL5H9)
 [![DevOps By Rultor.com](https://www.rultor.com/b/jcabi/jcabi-immutable)](https://www.rultor.com/p/jcabi/jcabi-immutable)
 
 [![mvn](https://github.com/jcabi/jcabi-immutable/actions/workflows/mvn.yml/badge.svg)](https://github.com/jcabi/jcabi-immutable/actions/workflows/mvn.yml)
