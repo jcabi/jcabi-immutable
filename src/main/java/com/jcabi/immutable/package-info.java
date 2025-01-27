@@ -39,8 +39,6 @@
  *   &lt;artifactId&gt;jcabi-immutable&lt;/artifactId&gt;
  * &lt;/dependency&gt;</pre>
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1.10
  * @see <a href="http://www.jcabi.com/jcabi-immutable">project website</a>
  */
