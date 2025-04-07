@@ -6,7 +6,7 @@
 [![mvn](https://github.com/jcabi/jcabi-immutable/actions/workflows/mvn.yml/badge.svg)](https://github.com/jcabi/jcabi-immutable/actions/workflows/mvn.yml)
 [![PDD status](https://www.0pdd.com/svg?name=jcabi/jcabi-immutable)](https://www.0pdd.com/p?name=jcabi/jcabi-immutable)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-immutable)
-[![Javadoc](https://javadoc.io/badge/com.jcabi/jcabi-immutable.svg)](http://www.javadoc.io/doc/com.jcabi/jcabi-immutable)
+[![Javadoc](https://javadoc.io/badge/com.jcabi/jcabi-immutable.svg)](https://www.javadoc.io/doc/com.jcabi/jcabi-immutable)
 
 More details are here: [immutable.jcabi.com](http://immutable.jcabi.com/index.html)
 
