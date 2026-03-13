@@ -36,7 +36,8 @@ import java.util.Set;
 @SuppressWarnings({
     "unchecked", "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
-    "PMD.OnlyOneConstructorShouldDoInitialization"
+    "PMD.OnlyOneConstructorShouldDoInitialization",
+    "PMD.LooseCoupling"
 })
 public final class ArraySet<T> implements Set<T> {
 

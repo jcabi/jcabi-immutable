@@ -48,14 +48,20 @@ final class ArrayMapTest {
     }
 
     @Test
-    void comparesCorrectlyWithAnotherMap() {
+    void comparesCorrectlyWithAnotherMapOfIntegers() {
         MatcherAssert.assertThat(
+            "should compare integer maps",
             new ArrayMap<Integer, Integer>().with(1, 1).with(2, 2),
             Matchers.equalTo(
                 new ArrayMap<Integer, Integer>().with(2, 2).with(1, 1)
             )
         );
+    }
+
+    @Test
+    void comparesCorrectlyWithAnotherMapOfClasses() {
         MatcherAssert.assertThat(
+            "should compare class maps",
             new ArrayMap<Class<?>, Integer>()
                 .with(String.class, 1)
                 .with(Integer.class, 2),

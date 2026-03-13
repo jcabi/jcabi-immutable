@@ -66,4 +66,24 @@
       <version>0.26.0</version>
     </dependency>
   </dependencies>
+  <profiles>
+    <profile>
+      <id>qulice</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.qulice</groupId>
+            <artifactId>qulice-maven-plugin</artifactId>
+            <version>0.25.1</version>
+            <configuration>
+              <excludes>
+                <exclude>duplicatefinder:.*</exclude>
+              </excludes>
+              <license>file:${basedir}/LICENSE.txt</license>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

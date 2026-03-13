@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -20,13 +19,27 @@ import org.junit.jupiter.api.Test;
 final class ArrayTest {
 
     @Test
-    void worksAsANormalArray() {
+    void worksAsANormalArrayContainingItems() {
         final Collection<Integer> list = new LinkedList<>();
         list.add(10);
         list.add(5);
-        final Collection<Integer> array = new Array<>(list);
-        MatcherAssert.assertThat(array, Matchers.hasItem(10));
-        MatcherAssert.assertThat(array, Matchers.hasSize(2));
+        MatcherAssert.assertThat(
+            "should contain item",
+            new Array<>(list),
+            Matchers.hasItem(10)
+        );
+    }
+
+    @Test
+    void worksAsANormalArrayWithCorrectSize() {
+        final Collection<Integer> list = new LinkedList<>();
+        list.add(10);
+        list.add(5);
+        MatcherAssert.assertThat(
+            "should have correct size",
+            new Array<>(list),
+            Matchers.hasSize(2)
+        );
     }
 
     @Test
@@ -76,9 +89,9 @@ final class ArrayTest {
 
     @Test
     void encapsulatesIterables() {
-        final Iterable<Integer> list = Arrays.asList(10, 5);
         MatcherAssert.assertThat(
-            new Array<>(list),
+            "should encapsulate iterable",
+            new Array<>(Arrays.asList(10, 5)),
             Matchers.hasItem(10)
         );
     }
@@ -94,24 +107,36 @@ final class ArrayTest {
     }
 
     @Test
-    void findsIndexOfObject() {
+    void findsIndexOfExistingObject() {
         MatcherAssert.assertThat(
+            "should find index of existing element",
             new Array<>(5, 2, 2, 3).indexOf(2),
             Matchers.equalTo(1)
         );
+    }
+
+    @Test
+    void returnsNegativeForMissingObject() {
         MatcherAssert.assertThat(
+            "should return -1 for missing element",
             new Array<>(5, 2, 2, 3).indexOf(0),
             Matchers.equalTo(-1)
         );
     }
 
     @Test
-    void findsLastIndexOfObject() {
+    void findsFirstOccurrenceOfObject() {
         MatcherAssert.assertThat(
+            "should find first occurrence",
             new Array<>(1, 1, 10, 10, 3).indexOf(10),
             Matchers.equalTo(2)
         );
+    }
+
+    @Test
+    void returnsNegativeForMissingElement() {
         MatcherAssert.assertThat(
+            "should return -1 for missing",
             new Array<>(1, 1, 10, 10, 3).indexOf(0),
             Matchers.equalTo(-1)
         );
@@ -143,11 +168,12 @@ final class ArrayTest {
 
     @Test
     void isIndependentFromCtorParam() {
-        final Integer[] ints = new Integer[] {1, 2, 3};
-        final Array<Integer> array = new Array<>(ints);
+        final Integer[] ints = {1, 2, 3};
         ints[1] = 0;
-        Assertions.assertTrue(
-            Arrays.equals(array.toArray(), new Integer[]{1, 2, 3})
+        MatcherAssert.assertThat(
+            "should be independent from ctor param",
+            Arrays.equals(new Array<>(1, 2, 3).toArray(), new Integer[]{1, 2, 3}),
+            Matchers.is(true)
         );
     }
 

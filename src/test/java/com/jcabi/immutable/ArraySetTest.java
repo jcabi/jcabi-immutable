@@ -7,7 +7,6 @@ package com.jcabi.immutable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Set;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -19,13 +18,27 @@ import org.junit.jupiter.api.Test;
 final class ArraySetTest {
 
     @Test
-    void worksAsANormalSortedSet() {
+    void worksAsANormalSortedSetContainingItems() {
         final Collection<Integer> list = new LinkedList<>();
         list.add(10);
         list.add(5);
-        final Set<Integer> set = new ArraySet<>(list);
-        MatcherAssert.assertThat(set, Matchers.hasItem(10));
-        MatcherAssert.assertThat(set, Matchers.hasSize(2));
+        MatcherAssert.assertThat(
+            "should contain item",
+            new ArraySet<>(list),
+            Matchers.hasItem(10)
+        );
+    }
+
+    @Test
+    void worksAsANormalSortedSetWithCorrectSize() {
+        final Collection<Integer> list = new LinkedList<>();
+        list.add(10);
+        list.add(5);
+        MatcherAssert.assertThat(
+            "should have correct size",
+            new ArraySet<>(list),
+            Matchers.hasSize(2)
+        );
     }
 
     @Test
@@ -56,9 +69,9 @@ final class ArraySetTest {
 
     @Test
     void encapsulatesIterables() {
-        final Iterable<Integer> list = Arrays.asList(10, 5);
         MatcherAssert.assertThat(
-            new ArraySet<>(list),
+            "should encapsulate iterable",
+            new ArraySet<>(Arrays.asList(10, 5)),
             Matchers.hasItem(10)
         );
     }

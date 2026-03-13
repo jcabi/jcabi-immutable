@@ -41,7 +41,8 @@ import java.util.concurrent.ConcurrentMap;
     "rawtypes", "unchecked",
     "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
-    "PMD.OnlyOneConstructorShouldDoInitialization"
+    "PMD.OnlyOneConstructorShouldDoInitialization",
+    "PMD.LooseCoupling"
 })
 public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
@@ -62,7 +63,6 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
      * Public ctor.
      * @param map The original map
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public ArrayMap(final Map<K, V> map) {
         if (map == null) {
             throw new IllegalArgumentException(
@@ -176,7 +176,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(100);
         for (final Map.Entry<K, V> item : this.entries) {
             if (text.length() > 0) {
                 text.append(", ");

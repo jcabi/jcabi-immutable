@@ -33,7 +33,8 @@ import java.util.ListIterator;
 @SuppressWarnings({
     "unchecked", "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
-    "PMD.OnlyOneConstructorShouldDoInitialization"
+    "PMD.OnlyOneConstructorShouldDoInitialization",
+    "PMD.LooseCoupling"
 })
 public final class Array<T> implements List<T> {
 
@@ -118,7 +119,7 @@ public final class Array<T> implements List<T> {
         );
         final T[] items = (T[]) new Object[
             this.values.length + Collection.class.cast(vals).size()
-        ];
+            ];
         System.arraycopy(this.values, 0, items, 0, this.values.length);
         int idx = this.values.length;
         for (final T value : vals) {
@@ -157,7 +158,7 @@ public final class Array<T> implements List<T> {
         );
         final T[] temp = (T[]) new Object[
             Math.max(this.values.length, pos + 1)
-        ];
+            ];
         System.arraycopy(this.values, 0, temp, 0, this.values.length);
         temp[pos] = value;
         return new Array<>(temp);
@@ -231,7 +232,7 @@ public final class Array<T> implements List<T> {
 
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(100);
         for (final T item : this.values) {
             if (text.length() > 0) {
                 text.append(", ");

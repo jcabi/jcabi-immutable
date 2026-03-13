@@ -15,7 +15,7 @@ import java.util.Comparator;
  * @since 1.0
  */
 @Immutable
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "PMD.ImplicitFunctionalInterface"})
 public interface ArrayComparator<T> extends Comparator<T> {
 
     /**

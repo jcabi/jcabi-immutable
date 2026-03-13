@@ -5,7 +5,6 @@
 package com.jcabi.immutable;
 
 import java.util.Arrays;
-import java.util.SortedSet;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -23,14 +22,39 @@ final class ArraySortedSetTest {
         new ArrayComparator.Default<>();
 
     @Test
-    void worksAsNormalSortedSet() {
-        final SortedSet<Integer> set = new ArraySortedSet<>(
-            Arrays.asList(10, 5)
+    void worksAsNormalSortedSetContainingItem() {
+        MatcherAssert.assertThat(
+            "should work as sorted set",
+            new ArraySortedSet<>(Arrays.asList(10, 5)),
+            Matchers.hasItem(10)
         );
-        MatcherAssert.assertThat(set, Matchers.hasItem(10));
-        MatcherAssert.assertThat(set, Matchers.hasSize(2));
-        MatcherAssert.assertThat(set.first(), Matchers.equalTo(5));
-        MatcherAssert.assertThat(set.last(), Matchers.equalTo(10));
+    }
+
+    @Test
+    void worksAsNormalSortedSetWithCorrectSize() {
+        MatcherAssert.assertThat(
+            "should have correct size",
+            new ArraySortedSet<>(Arrays.asList(10, 5)),
+            Matchers.hasSize(2)
+        );
+    }
+
+    @Test
+    void providesSortedFirst() {
+        MatcherAssert.assertThat(
+            "should return first element",
+            new ArraySortedSet<>(Arrays.asList(10, 5)).first(),
+            Matchers.equalTo(5)
+        );
+    }
+
+    @Test
+    void providesSortedLast() {
+        MatcherAssert.assertThat(
+            "should return last element",
+            new ArraySortedSet<>(Arrays.asList(10, 5)).last(),
+            Matchers.equalTo(10)
+        );
     }
 
     @Test
@@ -65,9 +89,9 @@ final class ArraySortedSetTest {
 
     @Test
     void encapsulatesIterables() {
-        final Iterable<Integer> list = Arrays.asList(10, 5, 7);
         MatcherAssert.assertThat(
-            new ArraySortedSet<>(list),
+            "should encapsulate iterable",
+            new ArraySortedSet<>(Arrays.asList(10, 5, 7)),
             Matchers.contains(5, 7, 10)
         );
     }
@@ -92,23 +116,22 @@ final class ArraySortedSetTest {
 
     @Test
     void replacesComparator() {
-        final String first = "B very long long text";
-        final String second = "A short text";
-        final SortedSet<String> origin = new ArraySortedSet<>(
-            Arrays.asList(second, first),
-            new ArrayComparator<String>() {
-                @Override
-                public int compare(final String left, final String right) {
-                    return right.length() - left.length();
-                }
-            }
-        );
         MatcherAssert.assertThat(
+            "should replace comparator",
             new ArraySortedSet<>(
-                origin,
+                new ArraySortedSet<>(
+                    Arrays.asList("A short text", "B very long long text"),
+                    new ArrayComparator<String>() {
+                        @Override
+                        public int compare(final String left,
+                            final String right) {
+                            return right.length() - left.length();
+                        }
+                    }
+                ),
                 new ArrayComparator.Default<>()
             ),
-            Matchers.contains(second, first)
+            Matchers.contains("A short text", "B very long long text")
         );
     }
 

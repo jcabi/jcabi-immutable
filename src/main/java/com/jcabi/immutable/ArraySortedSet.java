@@ -35,7 +35,8 @@ import java.util.TreeSet;
 @SuppressWarnings({
     "unchecked", "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
-    "PMD.OnlyOneConstructorShouldDoInitialization"
+    "PMD.OnlyOneConstructorShouldDoInitialization",
+    "PMD.LooseCoupling", "PMD.GodClass"
 })
 public final class ArraySortedSet<T> implements SortedSet<T> {
 
@@ -209,7 +210,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(100);
         for (final T item : this.values) {
             if (text.length() > 0) {
                 text.append(", ");
