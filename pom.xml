@@ -79,7 +79,6 @@
               <excludes>
                 <exclude>duplicatefinder:.*</exclude>
               </excludes>
-              <license>file:${basedir}/LICENSE.txt</license>
             </configuration>
           </plugin>
         </plugins>
