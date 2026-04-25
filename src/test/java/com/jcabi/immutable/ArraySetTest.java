@@ -75,5 +75,4 @@ final class ArraySetTest {
             Matchers.hasItem(10)
         );
     }
-
 }

@@ -176,5 +176,4 @@ final class ArrayTest {
             Matchers.is(true)
         );
     }
-
 }

@@ -108,5 +108,4 @@ final class ArrayMapTest {
             Matchers.hasKey(10)
         );
     }
-
 }

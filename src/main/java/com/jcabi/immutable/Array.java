@@ -27,6 +27,9 @@ import java.util.ListIterator;
  * @param <T> Value key type
  * @since 0.1
  * @checkstyle MissingDeprecatedCheck (430 lines)
+ * @checkstyle ConstructorsCodeFreeCheck (430 lines)
+ * @checkstyle ConstructorsOrderCheck (430 lines)
+ * @checkstyle QualifyInnerClassCheck (430 lines)
  */
 @Immutable
 @Loggable(Loggable.DEBUG)

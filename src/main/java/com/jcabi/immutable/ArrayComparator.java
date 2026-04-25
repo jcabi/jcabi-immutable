@@ -87,5 +87,4 @@ public interface ArrayComparator<T> extends Comparator<T> {
             return right.compareTo(left);
         }
     }
-
 }

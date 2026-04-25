@@ -34,6 +34,9 @@ import java.util.concurrent.ConcurrentMap;
  * @param <V> Value key type
  * @since 0.1
  * @checkstyle MissingDeprecatedCheck (400 lines)
+ * @checkstyle ConstructorsCodeFreeCheck (400 lines)
+ * @checkstyle ConstructorsOrderCheck (400 lines)
+ * @checkstyle QualifyInnerClassCheck (400 lines)
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
@@ -385,5 +388,4 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             return String.format("%s=%s", this.getKey(), this.getValue());
         }
     }
-
 }

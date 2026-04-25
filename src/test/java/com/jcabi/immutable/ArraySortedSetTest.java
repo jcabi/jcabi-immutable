@@ -134,5 +134,4 @@ final class ArraySortedSetTest {
             Matchers.contains("A short text", "B very long long text")
         );
     }
-
 }
