@@ -74,7 +74,7 @@
           <plugin>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
-            <version>0.27.4</version>
+            <version>0.27.5</version>
             <configuration>
               <excludes>
                 <exclude>duplicatefinder:.*</exclude>
