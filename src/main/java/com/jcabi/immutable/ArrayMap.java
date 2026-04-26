@@ -21,20 +21,23 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
-* Map on top of array.
-*
+ * Map on top of array.
+ *
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
- * <p>
- * Limitation:
+ *
+ * <p>Limitation:
  * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <K> Map key type
  * @param <V> Value key type
  * @since 0.1
- * @checkstyle MissingDeprecatedCheck (400 lines)
  */
+// @checkstyle MissingDeprecatedCheck (400 lines)
+// @checkstyle ConstructorsCodeFreeCheck (400 lines)
+// @checkstyle ConstructorsOrderCheck (400 lines)
+// @checkstyle QualifyInnerClassCheck (400 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
@@ -329,6 +332,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
      */
     private static final class Cmp<K, V> implements
         Comparator<ArrayMap.ImmutableEntry<K, V>>, Serializable {
+
         /**
          * The Serial version UID.
          */
@@ -358,6 +362,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     @Immutable
     private static final class ImmutableEntry<K, V> extends
         AbstractMap.SimpleImmutableEntry<K, V> {
+
         /**
          * Serialization marker.
          */
@@ -385,5 +390,4 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
             return String.format("%s=%s", this.getKey(), this.getValue());
         }
     }
-
 }

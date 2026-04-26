@@ -35,7 +35,7 @@ final class ArrayMapTest {
             new ArrayMap<Integer, String>()
                 .with(5, "four")
                 .with(5, Integer.toString(5))
-                .with(40, "fourty")
+                .with(40, "forty")
                 .without(40)
                 .with(10, "ten"),
             Matchers.allOf(
@@ -108,5 +108,4 @@ final class ArrayMapTest {
             Matchers.hasKey(10)
         );
     }
-
 }
