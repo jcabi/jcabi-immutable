@@ -6,11 +6,11 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -20,14 +20,17 @@ import java.util.ListIterator;
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
- * <p>
- * Limitation:
+ *
+ * <p>Limitation:
  * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <T> Value key type
  * @since 0.1
- * @checkstyle MissingDeprecatedCheck (430 lines)
  */
+// @checkstyle MissingDeprecatedCheck (430 lines)
+// @checkstyle ConstructorsCodeFreeCheck (430 lines)
+// @checkstyle ConstructorsOrderCheck (430 lines)
+// @checkstyle QualifyInnerClassCheck (430 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
@@ -67,7 +70,7 @@ public final class Array<T> implements List<T> {
      */
     public Array(final Iterable<T> list) {
         this.throwIfArgumentIsNull(list, "list of objects can't be NULL");
-        final Collection<T> items = new LinkedList<>();
+        final Collection<T> items = new ArrayList<>(0);
         for (final T item : list) {
             items.add(item);
         }
@@ -138,7 +141,7 @@ public final class Array<T> implements List<T> {
         this.throwIfArgumentIsNull(
             vals, "Iterable argument of Array#with() can't be NULL"
         );
-        final Collection<T> list = new LinkedList<>();
+        final Collection<T> list = new ArrayList<>(this.values.length);
         list.addAll(Arrays.asList(this.values));
         for (final T value : vals) {
             list.add(value);
@@ -272,6 +275,7 @@ public final class Array<T> implements List<T> {
     }
 
     @Override
+    @SuppressWarnings("TypeParameterShadowing")
     public <T> T[] toArray(final T[] array) {
         final T[] target;
         if (array.length == this.values.length) {

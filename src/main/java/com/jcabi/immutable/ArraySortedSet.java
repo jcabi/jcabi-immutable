@@ -22,21 +22,26 @@ import java.util.TreeSet;
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
- * <p>
- * Limitation:
+ *
+ * <p>Limitation:
  * Encapsulated objects with exposed mutators can mutate their state.
  *
  * @param <T> Value key type
  * @since 0.1
- * @checkstyle MissingDeprecatedCheck (360 lines)
  */
+// @checkstyle MissingDeprecatedCheck (360 lines)
+// @checkstyle ConstructorsCodeFreeCheck (360 lines)
+// @checkstyle ConstructorsOrderCheck (360 lines)
+// @checkstyle QualifyInnerClassCheck (360 lines)
+// @checkstyle MethodDeclarationLengthCheck (360 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
     "unchecked", "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
     "PMD.OnlyOneConstructorShouldDoInitialization",
-    "PMD.LooseCoupling", "PMD.GodClass"
+    "PMD.LooseCoupling", "PMD.GodClass",
+    "JdkObsolete"
 })
 public final class ArraySortedSet<T> implements SortedSet<T> {
 
@@ -292,6 +297,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
     }
 
     @Override
+    @SuppressWarnings("TypeParameterShadowing")
     public <T> T[] toArray(final T[] array) {
         final T[] dest;
         if (array.length == this.values.length) {

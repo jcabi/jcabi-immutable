@@ -4,9 +4,9 @@
  */
 package com.jcabi.immutable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedList;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ final class ArraySetTest {
 
     @Test
     void worksAsANormalSortedSetContainingItems() {
-        final Collection<Integer> list = new LinkedList<>();
+        final Collection<Integer> list = new ArrayList<>(2);
         list.add(10);
         list.add(5);
         MatcherAssert.assertThat(
@@ -31,7 +31,7 @@ final class ArraySetTest {
 
     @Test
     void worksAsANormalSortedSetWithCorrectSize() {
-        final Collection<Integer> list = new LinkedList<>();
+        final Collection<Integer> list = new ArrayList<>(2);
         list.add(10);
         list.add(5);
         MatcherAssert.assertThat(
@@ -75,5 +75,4 @@ final class ArraySetTest {
             Matchers.hasItem(10)
         );
     }
-
 }

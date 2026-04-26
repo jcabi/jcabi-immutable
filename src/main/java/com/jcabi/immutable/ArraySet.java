@@ -6,12 +6,12 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -20,17 +20,20 @@ import java.util.Set;
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
  * annotation.
- * <p>
- * Limitations:
+ *
+ * <p>Limitations:
  * Encapsulated objects with exposed mutators can mutate their state.
  *
- * Since this Set implementation is backed by array,<br>
+ * <p>Since this Set implementation is backed by array,<br>
  * complexity of {@link ArraySet#contains} is (<b>O(n)</b>).
  *
  * @param <T> Value key type
  * @since 0.1
- * @checkstyle MissingDeprecatedCheck (270 lines)
  */
+// @checkstyle MissingDeprecatedCheck (270 lines)
+// @checkstyle ConstructorsCodeFreeCheck (270 lines)
+// @checkstyle ConstructorsOrderCheck (270 lines)
+// @checkstyle QualifyInnerClassCheck (270 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
@@ -136,7 +139,7 @@ public final class ArraySet<T> implements Set<T> {
         this.throwIfArgumentIsNull(
             value, "argument of ArraySet#without() can't be NULL"
         );
-        final Collection<T> list = new LinkedList<>();
+        final Collection<T> list = new ArrayList<>(this.size());
         list.addAll(this);
         list.remove(value);
         return new ArraySet<>(list);
@@ -202,6 +205,7 @@ public final class ArraySet<T> implements Set<T> {
     }
 
     @Override
+    @SuppressWarnings("TypeParameterShadowing")
     public <T> T[] toArray(final T[] array) {
         final T[] dest;
         if (array.length == this.values.length) {

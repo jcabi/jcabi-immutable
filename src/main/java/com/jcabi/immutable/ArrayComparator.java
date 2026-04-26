@@ -10,7 +10,6 @@ import java.util.Comparator;
 
 /**
  * Comparator for arrays.
- *
  * @param <T> Value type
  * @since 1.0
  */
@@ -25,6 +24,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
      */
     @Immutable
     final class Default<T> implements ArrayComparator<T>, Serializable {
+
         /**
          * Serialization marker.
          */
@@ -48,6 +48,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
      */
     @Immutable
     final class Neutral<T> implements ArrayComparator<T>, Serializable {
+
         /**
          * Serialization marker.
          */
@@ -59,6 +60,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         }
 
         @Override
+        @SuppressWarnings("UnusedVariable")
         public int compare(final T left, final T right) {
             return 1;
         }
@@ -72,6 +74,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
     @Immutable
     final class Reverse<T extends Comparable<T>> implements ArrayComparator<T>,
         Serializable {
+
         /**
          * Serialization marker.
          */
@@ -87,5 +90,4 @@ public interface ArrayComparator<T> extends Comparator<T> {
             return right.compareTo(left);
         }
     }
-
 }
