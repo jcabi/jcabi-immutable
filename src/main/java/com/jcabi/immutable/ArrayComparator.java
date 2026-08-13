@@ -30,6 +30,13 @@ public interface ArrayComparator<T> extends Comparator<T> {
          */
         private static final long serialVersionUID = 0x54ef44fb3ef2efa3L;
 
+        /**
+         * Public ctor.
+         */
+        public Default() {
+            // nothing to initialize
+        }
+
         @Override
         public String toString() {
             return "DEFAULT";
@@ -53,6 +60,13 @@ public interface ArrayComparator<T> extends Comparator<T> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 0x54ef489b3ef2eca3L;
+
+        /**
+         * Public ctor.
+         */
+        public Neutral() {
+            // nothing to initialize
+        }
 
         @Override
         public String toString() {
@@ -79,6 +93,13 @@ public interface ArrayComparator<T> extends Comparator<T> {
          * Serialization marker.
          */
         private static final long serialVersionUID = 0x545f489d3ed2eca3L;
+
+        /**
+         * Public ctor.
+         */
+        public Reverse() {
+            // nothing to initialize
+        }
 
         @Override
         public String toString() {
