@@ -34,7 +34,6 @@ import java.util.concurrent.ConcurrentMap;
  * @param <V> Value key type
  * @since 0.1
  */
-// @checkstyle MissingDeprecatedCheck (400 lines)
 // @checkstyle ConstructorsCodeFreeCheck (400 lines)
 // @checkstyle ConstructorsOrderCheck (400 lines)
 // @checkstyle QualifyInnerClassCheck (400 lines)
@@ -42,7 +41,6 @@ import java.util.concurrent.ConcurrentMap;
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
     "rawtypes", "unchecked",
-    "PMD.TooManyMethods",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
     "PMD.OnlyOneConstructorShouldDoInitialization",
     "PMD.LooseCoupling"
@@ -320,7 +318,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
         return Collections.unmodifiableSet(
-            new LinkedHashSet<Map.Entry<K, V>>(Arrays.asList(this.entries))
+            new LinkedHashSet<>(Arrays.asList(this.entries))
         );
     }
 

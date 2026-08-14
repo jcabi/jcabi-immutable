@@ -29,15 +29,13 @@ import java.util.TreeSet;
  * @param <T> Value key type
  * @since 0.1
  */
-// @checkstyle MissingDeprecatedCheck (360 lines)
 // @checkstyle ConstructorsCodeFreeCheck (360 lines)
 // @checkstyle ConstructorsOrderCheck (360 lines)
-// @checkstyle QualifyInnerClassCheck (360 lines)
 // @checkstyle MethodDeclarationLengthCheck (360 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
-    "unchecked", "PMD.TooManyMethods",
+    "unchecked",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
     "PMD.OnlyOneConstructorShouldDoInitialization",
     "PMD.LooseCoupling", "PMD.GodClass",

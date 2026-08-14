@@ -30,14 +30,12 @@ import java.util.Set;
  * @param <T> Value key type
  * @since 0.1
  */
-// @checkstyle MissingDeprecatedCheck (270 lines)
 // @checkstyle ConstructorsCodeFreeCheck (270 lines)
 // @checkstyle ConstructorsOrderCheck (270 lines)
-// @checkstyle QualifyInnerClassCheck (270 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
-    "unchecked", "PMD.TooManyMethods",
+    "unchecked",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
     "PMD.OnlyOneConstructorShouldDoInitialization",
     "PMD.LooseCoupling"

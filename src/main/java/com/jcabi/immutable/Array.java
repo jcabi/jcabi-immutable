@@ -27,14 +27,12 @@ import java.util.ListIterator;
  * @param <T> Value key type
  * @since 0.1
  */
-// @checkstyle MissingDeprecatedCheck (430 lines)
 // @checkstyle ConstructorsCodeFreeCheck (430 lines)
 // @checkstyle ConstructorsOrderCheck (430 lines)
-// @checkstyle QualifyInnerClassCheck (430 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
-    "unchecked", "PMD.TooManyMethods",
+    "unchecked",
     "PMD.ConstructorOnlyInitializesOrCallOtherConstructors",
     "PMD.OnlyOneConstructorShouldDoInitialization",
     "PMD.LooseCoupling"
@@ -121,8 +119,7 @@ public final class Array<T> implements List<T> {
             vals, "Collection argument of Array#with() can't be NULL"
         );
         final T[] items = (T[]) new Object[
-            this.values.length + Collection.class.cast(vals).size()
-            ];
+            this.values.length + Collection.class.cast(vals).size()];
         System.arraycopy(this.values, 0, items, 0, this.values.length);
         int idx = this.values.length;
         for (final T value : vals) {
@@ -160,8 +157,7 @@ public final class Array<T> implements List<T> {
             value, "second argument of Array#with() can't be NULL"
         );
         final T[] temp = (T[]) new Object[
-            Math.max(this.values.length, pos + 1)
-            ];
+            Math.max(this.values.length, pos + 1)];
         System.arraycopy(this.values, 0, temp, 0, this.values.length);
         temp[pos] = value;
         return new Array<>(temp);

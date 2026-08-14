@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link Array}.
  * @since 0.1
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class ArrayTest {
 
     @Test

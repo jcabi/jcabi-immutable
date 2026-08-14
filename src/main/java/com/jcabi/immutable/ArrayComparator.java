@@ -28,7 +28,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         /**
          * Serialization marker.
          */
-        private static final long serialVersionUID = 0x54ef44fb3ef2efa3L;
+        private static final long serialVersionUID = 0x54EF44FB3EF2EFA3L;
 
         /**
          * Public ctor.
@@ -59,7 +59,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         /**
          * Serialization marker.
          */
-        private static final long serialVersionUID = 0x54ef489b3ef2eca3L;
+        private static final long serialVersionUID = 0x54EF489B3EF2ECA3L;
 
         /**
          * Public ctor.
@@ -92,7 +92,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
         /**
          * Serialization marker.
          */
-        private static final long serialVersionUID = 0x545f489d3ed2eca3L;
+        private static final long serialVersionUID = 0x545F489D3ED2ECA3L;
 
         /**
          * Public ctor.
