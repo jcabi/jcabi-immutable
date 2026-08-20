@@ -360,21 +360,12 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
         );
     }
 
-    /**
-     * Throws IllegalArgumentException if the input parameter is null.
-     * @param comp Comparator to check its nullity
-     */
     private void throwIfComparatorArgumentIsNull(final Comparator<T> comp) {
         this.throwIfArgumentIsNull(
             comp, "comparator argument of ArraySortedSet ctor can't be NULL"
         );
     }
 
-    /**
-     * Throws IllegalArgumentException if the input parameter is null.
-     * @param obj Object to check its nullity
-     * @param message Message to send with the exception
-     */
     private void throwIfArgumentIsNull(final Object obj, final String message) {
         if (obj == null) {
             throw new IllegalArgumentException(message);

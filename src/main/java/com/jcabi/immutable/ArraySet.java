@@ -256,11 +256,6 @@ public final class ArraySet<T> implements Set<T> {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Throws IllegalArgumentException if the input parameter is null.
-     * @param obj Object to check its nullity
-     * @param which Appellation of object
-     */
     private void throwIfArgumentIsNull(final Object obj, final String which) {
         if (obj == null) {
             throw new IllegalArgumentException(

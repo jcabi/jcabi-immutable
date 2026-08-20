@@ -6,13 +6,10 @@ package com.jcabi.immutable;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import java.io.Serializable;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +33,6 @@ import java.util.concurrent.ConcurrentMap;
  */
 // @checkstyle ConstructorsCodeFreeCheck (400 lines)
 // @checkstyle ConstructorsOrderCheck (400 lines)
-// @checkstyle QualifyInnerClassCheck (400 lines)
 @Immutable
 @Loggable(Loggable.DEBUG)
 @SuppressWarnings({
@@ -57,7 +53,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
      * Public ctor.
      */
     public ArrayMap() {
-        this.entries = new ArrayMap.ImmutableEntry[0];
+        this.entries = new ImmutableEntry[0];
     }
 
     /**
@@ -70,12 +66,12 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
                 "argument of ArrayMap ctor can't be NULL"
             );
         }
-        final Set<ArrayMap.ImmutableEntry<K, V>> entrs =
+        final Set<ImmutableEntry<K, V>> entrs =
             new TreeSet<>(
-                new ArrayMap.Cmp<>()
+                new Cmp<>()
             );
         for (final Map.Entry<K, V> entry : map.entrySet()) {
-            entrs.add(new ArrayMap.ImmutableEntry<>(entry));
+            entrs.add(new ImmutableEntry<>(entry));
         }
         this.entries = entrs.toArray(new ImmutableEntry[0]);
     }
@@ -320,72 +316,5 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
         return Collections.unmodifiableSet(
             new LinkedHashSet<>(Arrays.asList(this.entries))
         );
-    }
-
-    /**
-     * Comparator.
-     * @param <K> Key type.
-     * @param <V> Value type.
-     * @since 0.1
-     */
-    private static final class Cmp<K, V> implements
-        Comparator<ArrayMap.ImmutableEntry<K, V>>, Serializable {
-
-        /**
-         * The Serial version UID.
-         */
-        private static final long serialVersionUID = 4064118000237204080L;
-
-        @Override
-        public int compare(final ImmutableEntry<K, V> left,
-            final ImmutableEntry<K, V> right) {
-            final int compare;
-            if (left.getKey() instanceof Comparable) {
-                compare = Comparable.class.cast(left.getKey())
-                    .compareTo(right.getKey());
-            } else {
-                compare = left.getKey().toString()
-                    .compareTo(right.getKey().toString());
-            }
-            return compare;
-        }
-    }
-
-    /**
-     * Immutable map entry.
-     * @param <K> Key type.
-     * @param <V> Value type.
-     * @since 0.1
-     */
-    @Immutable
-    private static final class ImmutableEntry<K, V> extends
-        AbstractMap.SimpleImmutableEntry<K, V> {
-
-        /**
-         * Serialization marker.
-         */
-        private static final long serialVersionUID = 1L;
-
-        /**
-         * Public ctor.
-         * @param entry Entry to encapsulate
-         */
-        private ImmutableEntry(final Map.Entry<K, V> entry) {
-            this(entry.getKey(), entry.getValue());
-        }
-
-        /**
-         * Public ctor.
-         * @param key The key
-         * @param value The value
-         */
-        private ImmutableEntry(final K key, final V value) {
-            super(key, value);
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%s=%s", this.getKey(), this.getValue());
-        }
     }
 }
