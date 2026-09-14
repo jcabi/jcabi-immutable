@@ -19,13 +19,13 @@ import java.util.Set;
  *
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
- * annotation.
+ * annotation.</p>
  *
  * <p>Limitations:
- * Encapsulated objects with exposed mutators can mutate their state.
+ * Encapsulated objects with exposed mutators can mutate their state.</p>
  *
  * <p>Since this Set implementation is backed by array,<br>
- * complexity of {@link ArraySet#contains} is (<b>O(n)</b>).
+ * complexity of {@link ArraySet#contains} is (<b>O(n)</b>).</p>
  *
  * @param <T> Value key type
  * @since 0.1
@@ -57,6 +57,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @since 0.12
      */
@@ -69,6 +70,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @since 0.12
      */
@@ -82,6 +84,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @since 0.12
      */
@@ -98,6 +101,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Make a new one with an extra entry.
+     *
      * @param value The value
      * @return New set
      */
@@ -114,6 +118,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Make a new one with some extra entries.
+     *
      * @param vals Values to add
      * @return New set
      */
@@ -130,6 +135,7 @@ public final class ArraySet<T> implements Set<T> {
 
     /**
      * Make a new one without an extra entry.
+     *
      * @param value The value
      * @return New set
      */

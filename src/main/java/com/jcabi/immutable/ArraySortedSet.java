@@ -21,10 +21,10 @@ import java.util.TreeSet;
  *
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
- * annotation.
+ * annotation.</p>
  *
  * <p>Limitation:
- * Encapsulated objects with exposed mutators can mutate their state.
+ * Encapsulated objects with exposed mutators can mutate their state.</p>
  *
  * @param <T> Value key type
  * @since 0.1
@@ -56,6 +56,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param comparator Comparator to use
      */
     public ArraySortedSet(final ArrayComparator<T> comparator) {
@@ -64,6 +65,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      */
     public ArraySortedSet(final T... set) {
@@ -72,6 +74,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param comparator The comparator to use
      * @param set Original set
      */
@@ -82,6 +85,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor, with default comparator.
+     *
      * @param set Original set
      * @since 0.12
      */
@@ -91,6 +95,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @param comparator Comparator to use
      */
@@ -113,6 +118,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @param comparator Comparator to use
      */
@@ -132,6 +138,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Public ctor.
+     *
      * @param set Original set
      * @param comparator Comparator to use
      */
@@ -153,6 +160,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Make a new one with an extra entry.
+     *
      * @param value The value
      * @return New set
      */
@@ -169,6 +177,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Make a new one with some extra entries.
+     *
      * @param vals Values to add
      * @return New set
      */
@@ -185,6 +194,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     /**
      * Make a new one without an extra entry.
+     *
      * @param value The value
      * @return New set
      */

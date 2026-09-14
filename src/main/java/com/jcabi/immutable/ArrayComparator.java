@@ -10,6 +10,7 @@ import java.util.Comparator;
 
 /**
  * Comparator for arrays.
+ *
  * @param <T> Value type
  * @since 1.0
  */
@@ -19,6 +20,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
 
     /**
      * Default comparator.
+     *
      * @param <T> Type of argument
      * @since 1.0
      */
@@ -50,6 +52,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
 
     /**
      * Neutral comparator (never compares).
+     *
      * @param <T> Type of argument
      * @since 1.0
      */
@@ -82,6 +85,7 @@ public interface ArrayComparator<T> extends Comparator<T> {
 
     /**
      * Reverse comparator.
+     *
      * @param <T> Type of argument
      * @since 1.0
      */

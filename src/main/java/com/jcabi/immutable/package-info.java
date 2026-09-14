@@ -7,7 +7,7 @@
  * Simple immutable collections, maps, sets, etc.
  *
  * <p>The only dependency you need is (check our latest version available
- * at <a href="http://www.jcabi.com">www.jcabi.com</a>):
+ * at <a href="http://www.jcabi.com">www.jcabi.com</a>):</p>
  *
  * <pre>&lt;dependency&gt;
  *   &lt;groupId&gt;com.jcabi&lt;/groupId&gt;

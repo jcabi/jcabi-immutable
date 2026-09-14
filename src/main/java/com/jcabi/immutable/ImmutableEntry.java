@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Immutable map entry.
+ *
  * @param <K> Key type.
  * @param <V> Value type.
  * @since 0.1
@@ -25,6 +26,7 @@ final class ImmutableEntry<K, V> extends
 
     /**
      * Public ctor.
+     *
      * @param entry Entry to encapsulate
      */
     ImmutableEntry(final Map.Entry<K, V> entry) {
@@ -33,6 +35,7 @@ final class ImmutableEntry<K, V> extends
 
     /**
      * Public ctor.
+     *
      * @param key The key
      * @param value The value
      */

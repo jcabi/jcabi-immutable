@@ -9,6 +9,7 @@ import java.util.Comparator;
 
 /**
  * Comparator.
+ *
  * @param <K> Key type.
  * @param <V> Value type.
  * @since 0.1

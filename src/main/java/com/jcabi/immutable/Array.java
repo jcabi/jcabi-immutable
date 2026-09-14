@@ -19,10 +19,10 @@ import java.util.ListIterator;
  *
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
- * annotation.
+ * annotation.</p>
  *
  * <p>Limitation:
- * Encapsulated objects with exposed mutators can mutate their state.
+ * Encapsulated objects with exposed mutators can mutate their state.</p>
  *
  * @param <T> Value key type
  * @since 0.1
@@ -54,6 +54,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Public ctor, from an array of values.
+     *
      * @param list Items to encapsulate
      */
     public Array(final T... list) {
@@ -63,6 +64,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Public ctor.
+     *
      * @param list Items to encapsulate
      * @since 0.12
      */
@@ -78,6 +80,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Public ctor, from a generic array.
+     *
      * @param array Array with items to encapsulate
      */
     public Array(final Array<T> array) {
@@ -86,6 +89,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Public ctor, from a generic collection.
+     *
      * @param collection Collection with items to encapsulate
      */
     public Array(final Collection<T> collection) {
@@ -96,6 +100,7 @@ public final class Array<T> implements List<T> {
     /**
      * Make a new one with an extra entry, at the end of array (will be
      * extended by one extra element).
+     *
      * @param value The value
      * @return New vector
      */
@@ -111,6 +116,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Make a new extra entries, at the end of array.
+     *
      * @param vals The values
      * @return New vector
      */
@@ -131,6 +137,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Make a new extra entries, at the end of array.
+     *
      * @param vals The values
      * @return New vector
      */
@@ -148,6 +155,7 @@ public final class Array<T> implements List<T> {
 
     /**
      * Make a new one with an extra entry at the given position.
+     *
      * @param pos Position to replace
      * @param value The value
      * @return New array
@@ -167,7 +175,7 @@ public final class Array<T> implements List<T> {
      * Make a new array, without element on specific index.
      *
      * <p>The method throws {@link ArrayIndexOutOfBoundsException} if such
-     * position is absent in the array.
+     * position is absent in the array.</p>
      *
      * @param idx The position to remove
      * @return New array
@@ -197,6 +205,7 @@ public final class Array<T> implements List<T> {
     /**
      * Make a new array, without this element (or the same array if such
      * an element is absent).
+     *
      * @param item The element to remove
      * @return New array
      * @since 1.4

@@ -22,10 +22,10 @@ import java.util.concurrent.ConcurrentMap;
  *
  * <p>This class is truly immutable. This means that it never changes
  * its encapsulated values and is annotated with {@code @Immutable}
- * annotation.
+ * annotation.</p>
  *
  * <p>Limitation:
- * Encapsulated objects with exposed mutators can mutate their state.
+ * Encapsulated objects with exposed mutators can mutate their state.</p>
  *
  * @param <K> Map key type
  * @param <V> Value key type
@@ -58,6 +58,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Public ctor.
+     *
      * @param map The original map
      */
     public ArrayMap(final Map<K, V> map) {
@@ -78,6 +79,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Make a new one with an extra entry.
+     *
      * @param key The key
      * @param value The value
      * @return New map
@@ -102,6 +104,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Make a new one with these extra entries.
+     *
      * @param ents Entries
      * @return New map
      * @since 0.11
@@ -121,6 +124,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Make a new one without this key.
+     *
      * @param key The key
      * @return New map
      */
@@ -139,6 +143,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     /**
      * Make a new one without these keys.
+     *
      * @param keys The keys to remove
      * @return New map
      * @since 0.11
