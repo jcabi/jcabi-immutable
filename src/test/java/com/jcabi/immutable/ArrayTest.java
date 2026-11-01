@@ -88,6 +88,15 @@ final class ArrayTest {
     }
 
     @Test
+    void removesElementsFromArrayWithNulls() {
+        MatcherAssert.assertThat(
+            "should skip null elements while removing",
+            new Array<>("a").with(3, "b").without("b"),
+            Matchers.contains("a", null, null)
+        );
+    }
+
+    @Test
     void encapsulatesIterables() {
         MatcherAssert.assertThat(
             "should encapsulate iterable",

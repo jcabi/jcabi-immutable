@@ -211,13 +211,7 @@ public final class Array<T> implements List<T> {
      * @since 1.4
      */
     public Array<T> without(final T item) {
-        int idx = -1;
-        for (int pos = 0; pos < this.values.length; ++pos) {
-            if (this.values[pos].equals(item)) {
-                idx = pos;
-                break;
-            }
-        }
+        final int idx = this.indexOf(item);
         final Array<T> array;
         if (idx >= 0) {
             array = this.withoutIndex(idx);
