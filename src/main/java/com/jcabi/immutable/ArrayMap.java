@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -67,13 +67,11 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
                 "argument of ArrayMap ctor can't be NULL"
             );
         }
-        final Set<ImmutableEntry<K, V>> entrs =
-            new TreeSet<>(
-                new Cmp<>()
-            );
+        final List<ImmutableEntry<K, V>> entrs = new ArrayList<>(map.size());
         for (final Map.Entry<K, V> entry : map.entrySet()) {
             entrs.add(new ImmutableEntry<>(entry));
         }
+        entrs.sort(new Cmp<>());
         this.entries = entrs.toArray(new ImmutableEntry[0]);
     }
 
