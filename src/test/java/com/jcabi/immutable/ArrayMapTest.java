@@ -4,6 +4,9 @@
  */
 package com.jcabi.immutable;
 
+import java.math.BigDecimal;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.hamcrest.MatcherAssert;
@@ -16,6 +19,60 @@ import org.junit.jupiter.api.Test;
  * @since 0.1
  */
 final class ArrayMapTest {
+
+    @Test
+    void preservesUnequalKeysWithEqualNaturalOrdering() {
+        final BigDecimal tenths = new BigDecimal("1.0");
+        final BigDecimal hundredths = new BigDecimal("1.00");
+        final Map<BigDecimal, String> source = new LinkedHashMap<>(2);
+        source.put(tenths, "tenths");
+        source.put(hundredths, "hundredths");
+        MatcherAssert.assertThat(
+            "Copying a map must retain both unequal keys",
+            new ArrayMap<>(source),
+            Matchers.allOf(
+                Matchers.aMapWithSize(2),
+                Matchers.hasEntry(tenths, "tenths"),
+                Matchers.hasEntry(hundredths, "hundredths")
+            )
+        );
+    }
+
+    @Test
+    void replacesOnlyTheEqualKeyWhenAddingEntries() {
+        final BigDecimal first = new BigDecimal("2.0");
+        final BigDecimal second = new BigDecimal("2.00");
+        MatcherAssert.assertThat(
+            "Fluent updates must use equality to identify a key",
+            new ArrayMap<BigDecimal, String>()
+                .with(first, "original")
+                .with(second, "second")
+                .with(first, "replacement"),
+            Matchers.allOf(
+                Matchers.aMapWithSize(2),
+                Matchers.hasEntry(first, "replacement"),
+                Matchers.hasEntry(second, "second")
+            )
+        );
+    }
+
+    @Test
+    void preservesDifferentKeysWithTheSameText() {
+        final StringBuilder first = new StringBuilder("same");
+        final StringBuilder second = new StringBuilder("same");
+        final Map<StringBuilder, Integer> source = new LinkedHashMap<>(2);
+        source.put(first, 1);
+        source.put(second, 2);
+        MatcherAssert.assertThat(
+            "Textual ordering must not collapse distinct non-comparable keys",
+            new ArrayMap<>(source),
+            Matchers.allOf(
+                Matchers.aMapWithSize(2),
+                Matchers.hasEntry(first, 1),
+                Matchers.hasEntry(second, 2)
+            )
+        );
+    }
 
     @Test
     void worksAsANormalMap() {
