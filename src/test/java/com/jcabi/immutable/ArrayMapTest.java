@@ -21,6 +21,40 @@ import org.junit.jupiter.api.Test;
 final class ArrayMapTest {
 
     @Test
+    void findsValueAfterNullValue() {
+        final Map<String, String> source = new LinkedHashMap<>(2);
+        source.put("a", null);
+        source.put("b", "present");
+        MatcherAssert.assertThat(
+            "A null value must not prevent finding a later value",
+            new ArrayMap<>(source).containsValue("present"),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void findsNullValue() {
+        final Map<String, String> source = new LinkedHashMap<>(1);
+        source.put("a", null);
+        MatcherAssert.assertThat(
+            "A copied null value must be found",
+            new ArrayMap<>(source).containsValue(null),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void rejectsAbsentValueWhenNullValueExists() {
+        final Map<String, String> source = new LinkedHashMap<>(1);
+        source.put("a", null);
+        MatcherAssert.assertThat(
+            "A null value must not prevent rejecting an absent value",
+            new ArrayMap<>(source).containsValue("absent"),
+            Matchers.is(false)
+        );
+    }
+
+    @Test
     void preservesUnequalKeysWithEqualNaturalOrdering() {
         final BigDecimal tenths = new BigDecimal("1.0");
         final BigDecimal hundredths = new BigDecimal("1.00");
