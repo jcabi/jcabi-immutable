@@ -21,6 +21,38 @@ import org.junit.jupiter.api.Test;
 final class ArrayMapTest {
 
     @Test
+    void copiesMixedComparableKeys() {
+        final Map<Object, String> source = new LinkedHashMap<>(2);
+        source.put(1, "integer");
+        source.put("two", "string");
+        MatcherAssert.assertThat(
+            "Copying a map must accept incompatible comparable key types",
+            new ArrayMap<>(source),
+            Matchers.allOf(
+                Matchers.aMapWithSize(2),
+                Matchers.<Object, String>hasEntry(1, "integer"),
+                Matchers.<Object, String>hasEntry("two", "string")
+            )
+        );
+    }
+
+    @Test
+    void copiesMixedComparableKeysWithTheSameText() {
+        final Map<Object, String> source = new LinkedHashMap<>(2);
+        source.put("1", "string");
+        source.put(1, "integer");
+        MatcherAssert.assertThat(
+            "Fallback ordering must preserve distinct keys with the same text",
+            new ArrayMap<>(source),
+            Matchers.allOf(
+                Matchers.aMapWithSize(2),
+                Matchers.<Object, String>hasEntry("1", "string"),
+                Matchers.<Object, String>hasEntry(1, "integer")
+            )
+        );
+    }
+
+    @Test
     void preservesUnequalKeysWithEqualNaturalOrdering() {
         final BigDecimal tenths = new BigDecimal("1.0");
         final BigDecimal hundredths = new BigDecimal("1.00");
