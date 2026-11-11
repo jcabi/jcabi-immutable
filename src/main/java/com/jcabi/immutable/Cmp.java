@@ -27,7 +27,8 @@ final class Cmp<K, V> implements
     public int compare(final ImmutableEntry<K, V> left,
         final ImmutableEntry<K, V> right) {
         final int compare;
-        if (left.getKey() instanceof Comparable) {
+        if (left.getKey() instanceof Comparable
+            && left.getKey().getClass().equals(right.getKey().getClass())) {
             compare = Comparable.class.cast(left.getKey())
                 .compareTo(right.getKey());
         } else {
