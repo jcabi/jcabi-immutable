@@ -23,6 +23,46 @@ final class ArraySortedSetTest {
         new ArrayComparator.Default<>();
 
     @Test
+    void findsComparatorEquivalentItem() {
+        MatcherAssert.assertThat(
+            "Membership must use the comparator rather than equals",
+            new ArraySortedSet<String>(String::compareToIgnoreCase, "alpha")
+                .contains("ALPHA"),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void findsAllComparatorEquivalentItems() {
+        MatcherAssert.assertThat(
+            "Bulk membership must use the comparator for every item",
+            new ArraySortedSet<String>(String::compareToIgnoreCase, "alpha", "beta")
+                .containsAll(Arrays.asList("ALPHA", "BETA")),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void rejectsAbsentItemInBulkMembership() {
+        MatcherAssert.assertThat(
+            "Bulk membership must reject a missing comparator-equivalent item",
+            new ArraySortedSet<String>(String::compareToIgnoreCase, "alpha")
+                .containsAll(Arrays.asList("ALPHA", "gamma")),
+            Matchers.is(false)
+        );
+    }
+
+    @Test
+    void containsEmptyCollection() {
+        MatcherAssert.assertThat(
+            "Every set must contain all elements of an empty collection",
+            new ArraySortedSet<String>(String::compareToIgnoreCase)
+                .containsAll(Arrays.asList()),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
     void worksAsNormalSortedSetContainingItem() {
         MatcherAssert.assertThat(
             "should work as sorted set",

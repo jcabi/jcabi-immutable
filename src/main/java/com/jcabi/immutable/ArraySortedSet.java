@@ -245,7 +245,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public boolean contains(final Object key) {
-        return Arrays.asList(this.values).contains(key);
+        return Arrays.binarySearch(this.values, (T) key, this.cmp) >= 0;
     }
 
     @Override
@@ -341,7 +341,14 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public boolean containsAll(final Collection<?> col) {
-        return Arrays.asList(this.values).containsAll(col);
+        boolean contains = true;
+        for (final Object key : col) {
+            if (!this.contains(key)) {
+                contains = false;
+                break;
+            }
+        }
+        return contains;
     }
 
     @Override
