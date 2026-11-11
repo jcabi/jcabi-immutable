@@ -277,12 +277,18 @@ public final class Array<T> implements List<T> {
     @SuppressWarnings("TypeParameterShadowing")
     public <T> T[] toArray(final T[] array) {
         final T[] target;
-        if (array.length == this.values.length) {
-            target = array;
+        final int size = this.values.length;
+        if (array.length < size) {
+            target = (T[]) Arrays.copyOf(
+                this.values, size, array.getClass()
+            );
         } else {
-            target = (T[]) new Object[this.values.length];
+            target = array;
+            System.arraycopy(this.values, 0, target, 0, size);
+            if (array.length > size) {
+                target[size] = null;
+            }
         }
-        System.arraycopy(this.values, 0, target, 0, this.values.length);
         return target;
     }
 

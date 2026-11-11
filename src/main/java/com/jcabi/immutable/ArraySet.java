@@ -212,12 +212,18 @@ public final class ArraySet<T> implements Set<T> {
     @SuppressWarnings("TypeParameterShadowing")
     public <T> T[] toArray(final T[] array) {
         final T[] dest;
-        if (array.length == this.values.length) {
-            dest = array;
+        final int size = this.values.length;
+        if (array.length < size) {
+            dest = (T[]) Arrays.copyOf(
+                this.values, size, array.getClass()
+            );
         } else {
-            dest = (T[]) new Object[this.values.length];
+            dest = array;
+            System.arraycopy(this.values, 0, dest, 0, size);
+            if (array.length > size) {
+                dest[size] = null;
+            }
         }
-        System.arraycopy(this.values, 0, dest, 0, this.values.length);
         return dest;
     }
 
