@@ -317,7 +317,7 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
             dest = array;
             System.arraycopy(this.values, 0, dest, 0, size);
             if (array.length > size) {
-                dest[size] = null;
+                Arrays.fill(dest, size, size + 1, null);
             }
         }
         return dest;

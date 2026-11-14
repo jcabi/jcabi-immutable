@@ -286,7 +286,7 @@ public final class Array<T> implements List<T> {
             target = array;
             System.arraycopy(this.values, 0, target, 0, size);
             if (array.length > size) {
-                target[size] = null;
+                Arrays.fill(target, size, size + 1, null);
             }
         }
         return target;
