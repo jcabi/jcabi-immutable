@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -212,7 +213,7 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
     public boolean containsValue(final Object value) {
         boolean contains = false;
         for (final Map.Entry<K, V> entry : this.entries) {
-            if (entry.getValue().equals(value)) {
+            if (Objects.equals(entry.getValue(), value)) {
                 contains = true;
                 break;
             }
