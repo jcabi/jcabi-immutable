@@ -170,11 +170,13 @@ public final class ArraySet<T> implements Set<T> {
     @Override
     public String toString() {
         final StringBuilder text = new StringBuilder();
+        boolean first = true;
         for (final T item : this.values) {
-            if (text.length() > 0) {
+            if (!first) {
                 text.append(", ");
             }
             text.append(item);
+            first = false;
         }
         return text.toString();
     }
