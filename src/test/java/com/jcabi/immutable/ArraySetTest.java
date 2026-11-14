@@ -76,4 +76,24 @@ final class ArraySetTest {
             Matchers.hasItem(10)
         );
     }
+
+    @Test
+    void fillsTypedArrayOfSmallerSize() {
+        MatcherAssert.assertThat(
+            "should keep the component type of the given array",
+            new ArraySet<>(Arrays.asList("alpha", "beta")).toArray(new String[0]),
+            Matchers.arrayContaining("alpha", "beta")
+        );
+    }
+
+    @Test
+    void reusesTypedArrayOfLargerSize() {
+        final String[] given = {"old", "old", "old", "old"};
+        new ArraySet<>(Arrays.asList("alpha", "beta")).toArray(given);
+        MatcherAssert.assertThat(
+            "should put null right after the last item",
+            given,
+            Matchers.arrayContaining("alpha", "beta", null, "old")
+        );
+    }
 }
