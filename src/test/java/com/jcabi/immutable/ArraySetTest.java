@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -74,6 +75,72 @@ final class ArraySetTest {
             "should encapsulate iterable",
             new ArraySet<>(Arrays.asList(10, 5)),
             Matchers.hasItem(10)
+        );
+    }
+
+    @Test
+    void reportsNullArraySetConstructorArgument() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>((ArraySet<String>) null)
+            ).getMessage(),
+            Matchers.equalTo("ArraySet argument of ArraySet ctor can't be NULL")
+        );
+    }
+
+    @Test
+    void reportsNullCollectionConstructorArgument() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>((Collection<String>) null)
+            ).getMessage(),
+            Matchers.equalTo("Collection argument of ArraySet ctor can't be NULL")
+        );
+    }
+
+    @Test
+    void reportsNullIterableConstructorArgument() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>((Iterable<String>) null)
+            ).getMessage(),
+            Matchers.equalTo("Iterable argument of ArraySet ctor can't be NULL")
+        );
+    }
+
+    @Test
+    void reportsNullValueToAdd() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>().with((String) null)
+            ).getMessage(),
+            Matchers.equalTo("argument of ArraySet#with() can't be NULL")
+        );
+    }
+
+    @Test
+    void reportsNullCollectionToAdd() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>().with((Collection<String>) null)
+            ).getMessage(),
+            Matchers.equalTo("arguments of ArraySet#with() can't be NULL")
+        );
+    }
+
+    @Test
+    void reportsNullValueToRemove() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new ArraySet<String>().without((String) null)
+            ).getMessage(),
+            Matchers.equalTo("argument of ArraySet#without() can't be NULL")
         );
     }
 }

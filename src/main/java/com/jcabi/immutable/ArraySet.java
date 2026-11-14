@@ -262,13 +262,9 @@ public final class ArraySet<T> implements Set<T> {
         throw new UnsupportedOperationException();
     }
 
-    private void throwIfArgumentIsNull(final Object obj, final String which) {
+    private void throwIfArgumentIsNull(final Object obj, final String message) {
         if (obj == null) {
-            throw new IllegalArgumentException(
-                String.format(
-                    "%s argument of ArraySortedSet ctor can't be NULL", which
-                )
-            );
+            throw new IllegalArgumentException(message);
         }
     }
 }
