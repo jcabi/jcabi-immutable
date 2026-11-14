@@ -21,6 +21,18 @@ import org.junit.jupiter.api.Test;
 final class ArrayMapTest {
 
     @Test
+    void findsValueAfterNullValue() {
+        final Map<String, String> source = new LinkedHashMap<>(2);
+        source.put("a", null);
+        source.put("b", "present");
+        MatcherAssert.assertThat(
+            "A null value must not prevent finding a later value",
+            new ArrayMap<>(source).containsValue("present"),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
     void copiesMixedComparableKeys() {
         final Map<Object, String> source = new LinkedHashMap<>(2);
         source.put(1, "integer");
@@ -33,6 +45,28 @@ final class ArrayMapTest {
                 Matchers.<Object, String>hasEntry(1, "integer"),
                 Matchers.<Object, String>hasEntry("two", "string")
             )
+        );
+    }
+
+    @Test
+    void findsNullValue() {
+        final Map<String, String> source = new LinkedHashMap<>(1);
+        source.put("a", null);
+        MatcherAssert.assertThat(
+            "A copied null value must be found",
+            new ArrayMap<>(source).containsValue(null),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void rejectsAbsentValueWhenNullValueExists() {
+        final Map<String, String> source = new LinkedHashMap<>(1);
+        source.put("a", null);
+        MatcherAssert.assertThat(
+            "A null value must not prevent rejecting an absent value",
+            new ArrayMap<>(source).containsValue("absent"),
+            Matchers.is(false)
         );
     }
 
