@@ -175,4 +175,13 @@ final class ArraySortedSetTest {
             Matchers.contains("A short text", "B very long long text")
         );
     }
+
+    @Test
+    void preservesSeparatorAfterEmptyFirstElement() {
+        MatcherAssert.assertThat(
+            "An empty first element must still be followed by a separator",
+            new ArraySortedSet<>(Arrays.asList("", "a", "b")).toString(),
+            Matchers.equalTo(", a, b")
+        );
+    }
 }
