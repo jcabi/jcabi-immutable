@@ -154,9 +154,9 @@ public final class Array<T> implements List<T> {
     }
 
     /**
-     * Make a new one with an extra entry at the given position.
+     * Make a new one with a replaced entry, or append at the array size.
      *
-     * @param pos Position to replace
+     * @param pos Position to replace, from zero through the array size
      * @param value The value
      * @return New array
      */
@@ -164,6 +164,14 @@ public final class Array<T> implements List<T> {
         this.throwIfArgumentIsNull(
             value, "second argument of Array#with() can't be NULL"
         );
+        if (pos < 0 || pos > this.values.length) {
+            throw new IndexOutOfBoundsException(
+                String.format(
+                    "index %d is out of bounds: [0..%d]",
+                    pos, this.values.length
+                )
+            );
+        }
         final T[] temp = (T[]) new Object[
             Math.max(this.values.length, pos + 1)];
         System.arraycopy(this.values, 0, temp, 0, this.values.length);
