@@ -143,4 +143,13 @@ final class ArraySetTest {
             Matchers.equalTo("argument of ArraySet#without() can't be NULL")
         );
     }
+
+    @Test
+    void preservesSeparatorAfterEmptyFirstElement() {
+        MatcherAssert.assertThat(
+            "An empty first element must still be followed by a separator",
+            new ArraySet<>(Arrays.asList("", "a", "b")).toString(),
+            Matchers.equalTo(", a, b")
+        );
+    }
 }

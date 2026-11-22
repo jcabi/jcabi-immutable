@@ -185,4 +185,13 @@ final class ArrayTest {
             Matchers.is(true)
         );
     }
+
+    @Test
+    void preservesSeparatorAfterEmptyFirstElement() {
+        MatcherAssert.assertThat(
+            "An empty first element must still be followed by a separator",
+            new Array<>("", "a", "b").toString(),
+            Matchers.equalTo(", a, b")
+        );
+    }
 }
