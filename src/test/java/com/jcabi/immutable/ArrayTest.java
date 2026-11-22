@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -60,6 +61,51 @@ final class ArrayTest {
     }
 
     @Test
+    void rejectsPositionPastEnd() {
+        MatcherAssert.assertThat(
+            "should describe the valid positions",
+            Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> new Array<>("a").with(2, "b")
+            ).getMessage(),
+            Matchers.equalTo("index 2 is out of bounds: [0..1]")
+        );
+    }
+
+    @Test
+    void rejectsNegativePosition() {
+        MatcherAssert.assertThat(
+            "should describe a negative position",
+            Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> new Array<String>().with(-1, "a")
+            ).getMessage(),
+            Matchers.equalTo("index -1 is out of bounds: [0..0]")
+        );
+    }
+
+    @Test
+    void rejectsLargestPosition() {
+        MatcherAssert.assertThat(
+            "should reject the position before calculating the new size",
+            Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> new Array<String>().with(Integer.MAX_VALUE, "a")
+            ).getMessage(),
+            Matchers.equalTo("index 2147483647 is out of bounds: [0..0]")
+        );
+    }
+
+    @Test
+    void appendsAtZeroToEmptyArray() {
+        MatcherAssert.assertThat(
+            "should allow appending at the size of an empty array",
+            new Array<String>().with(0, "a"),
+            Matchers.contains("a")
+        );
+    }
+
+    @Test
     void removesElementsByIndex() {
         MatcherAssert.assertThat(
             new Array<Integer>()
@@ -91,7 +137,7 @@ final class ArrayTest {
     void removesElementsFromArrayWithNulls() {
         MatcherAssert.assertThat(
             "should skip null elements while removing",
-            new Array<>("a").with(3, "b").without("b"),
+            new Array<>("a", null, null, "b").without("b"),
             Matchers.contains("a", null, null)
         );
     }
