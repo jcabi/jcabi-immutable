@@ -232,4 +232,26 @@ final class ArrayMapTest {
             Matchers.hasKey(10)
         );
     }
+
+    @Test
+    void equalsEquivalentJdkMapSymmetrically() {
+        final Map<String, Integer> jdk = new LinkedHashMap<>();
+        jdk.put("alpha", 1);
+        final Map<String, Integer> immutable =
+            new ArrayMap<String, Integer>().with("alpha", 1);
+        MatcherAssert.assertThat(
+            "ArrayMap and an equivalent JDK map must be equal both ways",
+            immutable.equals(jdk) && jdk.equals(immutable),
+            Matchers.equalTo(true)
+        );
+    }
+
+    @Test
+    void matchesJdkMapHashCode() {
+        MatcherAssert.assertThat(
+            "ArrayMap hash code must follow the Map contract",
+            new ArrayMap<String, Integer>().with("alpha", 1).hashCode(),
+            Matchers.equalTo(Map.of("alpha", 1).hashCode())
+        );
+    }
 }

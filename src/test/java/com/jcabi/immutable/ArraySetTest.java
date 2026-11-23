@@ -7,6 +7,8 @@ package com.jcabi.immutable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -83,6 +85,39 @@ final class ArraySetTest {
             "An empty first element must still be followed by a separator",
             new ArraySet<>(Arrays.asList("", "a", "b")).toString(),
             Matchers.equalTo(", a, b")
+        );
+    }
+
+    @Test
+    void equalsEquivalentJdkSetSymmetrically() {
+        final Set<String> immutable = new ArraySet<>(
+            Arrays.asList("Aa", "BB")
+        );
+        final Set<String> jdk = new HashSet<>(Arrays.asList("Aa", "BB"));
+        MatcherAssert.assertThat(
+            "ArraySet and an equivalent JDK set must be equal both ways",
+            immutable.equals(jdk) && jdk.equals(immutable),
+            Matchers.equalTo(true)
+        );
+    }
+
+    @Test
+    void matchesJdkSetHashCode() {
+        MatcherAssert.assertThat(
+            "ArraySet hash code must follow the Set contract",
+            new ArraySet<>(Arrays.asList("Aa", "BB")).hashCode(),
+            Matchers.equalTo(
+                new HashSet<>(Arrays.asList("Aa", "BB")).hashCode()
+            )
+        );
+    }
+
+    @Test
+    void comparesTwoArraySetsRegardlessOfElementOrder() {
+        MatcherAssert.assertThat(
+            "ArraySets with identical elements must be equal",
+            new ArraySet<>(Arrays.asList("Aa", "BB")),
+            Matchers.equalTo(new ArraySet<>(Arrays.asList("BB", "Aa")))
         );
     }
 }

@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -210,15 +211,13 @@ public final class ArraySortedSet<T> implements SortedSet<T> {
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(this.values);
+        return new HashSet<>(Arrays.asList(this.values)).hashCode();
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object instanceof ArraySortedSet
-            && Arrays.deepEquals(
-                this.values, ArraySortedSet.class.cast(object).values
-            );
+        return object instanceof Set
+            && new HashSet<>(Arrays.asList(this.values)).equals(object);
     }
 
     @Override
