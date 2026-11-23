@@ -96,4 +96,13 @@ final class ArraySetTest {
             Matchers.arrayContaining("alpha", "beta", null, "old")
         );
     }
+
+    @Test
+    void preservesSeparatorAfterEmptyFirstElement() {
+        MatcherAssert.assertThat(
+            "An empty first element must still be followed by a separator",
+            new ArraySet<>(Arrays.asList("", "a", "b")).toString(),
+            Matchers.equalTo(", a, b")
+        );
+    }
 }
