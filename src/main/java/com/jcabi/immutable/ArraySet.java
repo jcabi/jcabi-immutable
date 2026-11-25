@@ -151,16 +151,14 @@ public final class ArraySet<T> implements Set<T> {
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(this.values);
+        return new HashSet<>(Arrays.asList(this.values)).hashCode();
     }
 
     @Override
     public boolean equals(final Object object) {
         final boolean equals;
-        if (object instanceof ArraySet) {
-            equals = Arrays.deepEquals(
-                this.values, ArraySet.class.cast(object).values
-            );
+        if (object instanceof Set) {
+            equals = new HashSet<>(Arrays.asList(this.values)).equals(object);
         } else {
             equals = false;
         }

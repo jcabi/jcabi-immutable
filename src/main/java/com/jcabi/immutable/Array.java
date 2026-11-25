@@ -236,8 +236,8 @@ public final class Array<T> implements List<T> {
 
     @Override
     public boolean equals(final Object object) {
-        return object instanceof Array
-            && Arrays.deepEquals(this.values, Array.class.cast(object).values);
+        return object instanceof List
+            && Arrays.asList(this.values).equals(object);
     }
 
     @Override

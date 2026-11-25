@@ -7,6 +7,7 @@ package com.jcabi.immutable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -238,6 +239,26 @@ final class ArrayTest {
             "An empty first element must still be followed by a separator",
             new Array<>("", "a", "b").toString(),
             Matchers.equalTo(", a, b")
+        );
+    }
+
+    @Test
+    void equalsEquivalentJdkListSymmetrically() {
+        final List<String> immutable = new Array<>("alpha", "beta");
+        final List<String> jdk = Arrays.asList("alpha", "beta");
+        MatcherAssert.assertThat(
+            "Array and an equivalent JDK list must be equal both ways",
+            immutable.equals(jdk) && jdk.equals(immutable),
+            Matchers.equalTo(true)
+        );
+    }
+
+    @Test
+    void matchesJdkListHashCode() {
+        MatcherAssert.assertThat(
+            "Array hash code must follow the List contract",
+            new Array<>("alpha", "beta").hashCode(),
+            Matchers.equalTo(Arrays.asList("alpha", "beta").hashCode())
         );
     }
 }

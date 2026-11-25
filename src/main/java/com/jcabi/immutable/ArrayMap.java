@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -164,15 +165,20 @@ public final class ArrayMap<K, V> implements ConcurrentMap<K, V> {
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(this.entries);
+        int code = 0;
+        for (final Map.Entry<K, V> entry : this.entries) {
+            code += entry.hashCode();
+        }
+        return code;
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object instanceof ArrayMap
-            && Arrays.deepEquals(
-                this.entries, ArrayMap.class.cast(object).entries
-            );
+        final Map<K, V> map = new HashMap<>(this.entries.length);
+        for (final Map.Entry<K, V> entry : this.entries) {
+            map.put(entry.getKey(), entry.getValue());
+        }
+        return object instanceof Map && map.equals(object);
     }
 
     @Override

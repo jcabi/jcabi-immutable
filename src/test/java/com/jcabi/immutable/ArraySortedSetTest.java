@@ -5,6 +5,8 @@
 package com.jcabi.immutable;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -182,6 +184,30 @@ final class ArraySortedSetTest {
             "An empty first element must still be followed by a separator",
             new ArraySortedSet<>(Arrays.asList("", "a", "b")).toString(),
             Matchers.equalTo(", a, b")
+        );
+    }
+
+    @Test
+    void equalsEquivalentJdkSetSymmetrically() {
+        final Set<String> immutable = new ArraySortedSet<>(
+            Arrays.asList("alpha", "beta")
+        );
+        final Set<String> jdk = new HashSet<>(Arrays.asList("alpha", "beta"));
+        MatcherAssert.assertThat(
+            "ArraySortedSet and a JDK set must be equal both ways",
+            immutable.equals(jdk) && jdk.equals(immutable),
+            Matchers.equalTo(true)
+        );
+    }
+
+    @Test
+    void matchesJdkSetHashCode() {
+        MatcherAssert.assertThat(
+            "ArraySortedSet hash code must follow the Set contract",
+            new ArraySortedSet<>(Arrays.asList("alpha", "beta")).hashCode(),
+            Matchers.equalTo(
+                new HashSet<>(Arrays.asList("alpha", "beta")).hashCode()
+            )
         );
     }
 }
