@@ -233,6 +233,26 @@ final class ArrayTest {
     }
 
     @Test
+    void fillsTypedArrayOfSmallerSize() {
+        MatcherAssert.assertThat(
+            "should keep the component type of the given array",
+            new Array<>("alpha", "beta").toArray(new String[0]),
+            Matchers.arrayContaining("alpha", "beta")
+        );
+    }
+
+    @Test
+    void reusesTypedArrayOfLargerSize() {
+        final String[] given = {"old", "old", "old", "old"};
+        new Array<>("alpha", "beta").toArray(given);
+        MatcherAssert.assertThat(
+            "should put null right after the last item",
+            given,
+            Matchers.arrayContaining("alpha", "beta", null, "old")
+        );
+    }
+
+    @Test
     void preservesSeparatorAfterEmptyFirstElement() {
         MatcherAssert.assertThat(
             "An empty first element must still be followed by a separator",
